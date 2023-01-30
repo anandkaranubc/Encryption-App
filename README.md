@@ -45,6 +45,17 @@ This application is designed to cater to the needs of all users, regardless of t
 This project is of interest to me because I wanted to dive deep into data security and privacy. In today's world, where data breaches and
 cyber-attacks are becoming increasingly common, it is crucial to ensure that sensitive information is protected. With this encryption application, I aim to provide a solution that addresses this concern, making it easier for individuals and businesses to secure their data. Additionally, I am excited about the opportunity to work on a project that combines my technical skills with my inquisitiveness for data security, and I believe this project will challenge me to grow as a software developer.
 
+## User Stories
+
+* As a security-conscious individual, I want to securely store my passwords for different websites and applications, so that I can easily access them without having to remember each one.
+
+* As a business owner, I want to encrypt sensitive files and documents to protect confidential information from falling into the wrong hands.
+
+* As a network administrator, I want to scan my network for open ports, vulnerable services, and security threats to maintain the security of my network.
+
+* As a user, I want to hide messages or files inside other files to protect their confidentiality, without altering their appearance.
+
+* As a software developer, I want to generate hashes for files or strings to ensure the integrity and authenticity of data, in order to avoid any tampering of data.
 
 <h1 align="center">
  Try it out today!
