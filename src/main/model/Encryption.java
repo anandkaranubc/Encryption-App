@@ -5,7 +5,7 @@ import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 
 public class Encryption {
-    private static KeyPair pair;
+    private static final KeyPair pair;
     static Cipher cipher;
     byte[] cipherText;
 
@@ -16,7 +16,7 @@ public class Encryption {
             pair = keyPairGen.generateKeyPair();
             cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException("Failed to initialize Encryption", e);
         }
     }
 
