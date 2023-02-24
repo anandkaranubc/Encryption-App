@@ -2,6 +2,7 @@ package model;
 
 import model.Decryption;
 import model.Encryption;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +37,11 @@ public class DecryptionTest {
 
         assertEquals(a, Decryption.passDecryption(cipherText, pair));
         assertEquals(b, Decryption.passDecryption(cipherText2, pair));
+    }
+
+    @AfterEach
+    public void resetEncryptionList() {
+        EncryptionList.getDataNames().clear();
+        EncryptionList.getEncryptedCiphers().clear();
     }
 }

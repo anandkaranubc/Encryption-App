@@ -1,5 +1,6 @@
 package model;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +18,7 @@ public class EncryptionListTest {
 
     @BeforeEach
     public void runBefore() {
+        EncryptionList encryptionList = new EncryptionList();
         encryptedCiphers = EncryptionList.getEncryptedCiphers();
         dataNames = EncryptionList.getDataNames();
         encryption1 = new Encryption();
@@ -58,8 +60,8 @@ public class EncryptionListTest {
     @Test
     public void testAddDataName() throws Exception {
         String pass1, pass2, pass3;
-        byte [] ciphertext1, ciphertext2, ciphertext3;
         String data1, data2, data3;
+        byte [] ciphertext1, ciphertext2, ciphertext3;
         List<String> dataNamesOrg = new ArrayList<>();
 
         assertEquals(0, dataNamesOrg.size());
@@ -74,13 +76,14 @@ public class EncryptionListTest {
 
         pass2 = "password2";
         data2 = "Chrome2";
-        ciphertext2 = encryption1.passEncryption(pass2, data2);
         dataNamesOrg.add(data2);
+        ciphertext2 = encryption1.passEncryption(pass2, data2);
 
         pass3 = "password3";
         data3 = "Chrome3";
-        ciphertext3 = encryption1.passEncryption(pass3, data3);
         dataNamesOrg.add(data3);
+        ciphertext3 = encryption1.passEncryption(pass3, data3);
+
 
         assertEquals(3, dataNames.size());
         assertEquals(dataNamesOrg, dataNames);
@@ -121,4 +124,11 @@ public class EncryptionListTest {
         assertEquals(new String(ciphertext2, StandardCharsets.UTF_8), encryptedStringsOrg.get(1));
         assertEquals(new String(ciphertext3, StandardCharsets.UTF_8), encryptedStringsOrg.get(2));
     }
+
+    @AfterEach
+    public void resetEncryptionList() {
+        EncryptionList.getDataNames().clear();
+        EncryptionList.getEncryptedCiphers().clear();
+    }
+
 }
