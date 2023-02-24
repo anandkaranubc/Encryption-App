@@ -24,13 +24,6 @@ public class EncryptionList {
         return encryptedStrings;
     }
 
-    public static void printEncryptedStrings() {
-        List<String> encryptedStringsList = encryptedStringList();
-        for (int i = 0; i < encryptedStringsList.size(); i++) {
-            System.out.println(dataNames.get(i) + ": " + encryptedStringsList.get(i));
-        }
-    }
-
     public static List<byte []> getEncryptedCiphers() {
         return encryptedCiphers;
     }

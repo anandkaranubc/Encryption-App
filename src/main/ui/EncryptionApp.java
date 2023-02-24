@@ -4,6 +4,7 @@ import model.DecryptionList;
 import model.Encryption;
 import model.EncryptionList;
 
+import java.util.List;
 import java.util.Scanner;
 
 import static model.DecryptionList.searchDataName;
@@ -125,7 +126,10 @@ public class EncryptionApp {
             continueOrNot();
         } else if (choice == 3) {
             System.out.println("Redirecting to Encryption List Page....\n\n");
-            EncryptionList.printEncryptedStrings();
+            List<String> encryptedStringsList = EncryptionList.encryptedStringList();
+            for (int i = 0; i < encryptedStringsList.size(); i++) {
+                System.out.println(EncryptionList.getDataNames().get(i) + ": " + encryptedStringsList.get(i));
+            }
             continueOrNot();
 
         } else if (choice == 4) {
