@@ -26,13 +26,6 @@ public class EncryptionTest {
     }
 
     @Test
-    public void testInvalidAlgorithm() {
-        Assertions.assertThrows(Exception.class, () -> {
-            Cipher cipher = Cipher.getInstance("INVALID_ALGORITHM");
-        });
-    }
-
-    @Test
     public void testPassEncryption() throws Exception {
         String pass = "password";
         String dataName = "Chrome";

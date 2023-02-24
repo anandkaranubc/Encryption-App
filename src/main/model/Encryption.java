@@ -8,19 +8,22 @@ public class Encryption {
     private static KeyPair pair;
     static Cipher cipher;
     byte[] cipherText;
+    private int count = 0;
 
-    static {
-        try {
-            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
-            keyPairGen.initialize(2048);
-            pair = keyPairGen.generateKeyPair();
-            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    static void initializeKeyPair() throws Exception {
+        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
+        keyPairGen.initialize(2048);
+        pair = keyPairGen.generateKeyPair();
+        cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
     }
 
     public byte[] passEncryption(String pass, String dataName) throws Exception {
+
+        if (count == 0) {
+            initializeKeyPair();
+            count++;
+        }
+
         cipher.init(Cipher.ENCRYPT_MODE, pair.getPublic());
 
         EncryptionList.addDataName(dataName);
