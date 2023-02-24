@@ -1,11 +1,13 @@
 package model;
 
-import static model.Decryption.passDecryption;
-import static model.EncryptionList.dataNames;
-import static model.EncryptionList.encryptedCiphers;
+import java.util.List;
 
+import static model.Decryption.passDecryption;
 
 public class DecryptionList {
+
+    static List<byte []> encryptedCiphers = EncryptionList.getEncryptedCiphers();
+    static List<String> dataNames = EncryptionList.getDataNames();
 
     public static void printDecryptedStrings() throws Exception {
         for (int i = 0; i < encryptedCiphers.size(); i++) {

@@ -1,7 +1,5 @@
 package model;
 
-import model.Encryption;
-import model.EncryptionList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,8 +17,8 @@ public class EncryptionListTest {
 
     @BeforeEach
     public void runBefore() {
-        encryptedCiphers = EncryptionList.encryptedCiphers;
-        dataNames = EncryptionList.dataNames;
+        encryptedCiphers = EncryptionList.getEncryptedCiphers();
+        dataNames = EncryptionList.getDataNames();
         encryption1 = new Encryption();
     }
 

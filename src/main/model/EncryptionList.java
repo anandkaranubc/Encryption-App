@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EncryptionList {
-    public static List<byte[]> encryptedCiphers = new ArrayList<>();
-    public static List<String> dataNames = new ArrayList<>();
+    private static List<byte[]> encryptedCiphers = new ArrayList<>();
+    private static List<String> dataNames = new ArrayList<>();
 
     public static void addEncryptedCiphers(byte[] cipherText) {
         encryptedCiphers.add(cipherText);
@@ -29,5 +29,13 @@ public class EncryptionList {
         for (int i = 0; i < encryptedStringsList.size(); i++) {
             System.out.println(dataNames.get(i) + ": " + encryptedStringsList.get(i));
         }
+    }
+
+    public static List<byte []> getEncryptedCiphers() {
+        return encryptedCiphers;
+    }
+
+    public static List<String> getDataNames() {
+        return dataNames;
     }
 }

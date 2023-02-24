@@ -18,8 +18,6 @@ public class EncryptionApp {
     Scanner sc = new Scanner(System.in);
 
     public EncryptionApp(int n) throws Exception {
-        this.username =  username;
-        this.password = password;
 
         if (n == 1) {
             if (count == 0) {
@@ -41,9 +39,9 @@ public class EncryptionApp {
     private void runSignUp() throws Exception {
         System.out.println("Welcome to the Signup Page");
         System.out.println("Enter you username: ");
-        this.username = sc.next();
+        username = sc.next();
         System.out.println("Enter your password: ");
-        this.password = sc.next();
+        password = sc.next();
         System.out.println("\n Congratulations, you have been signed up.");
         count++;
         System.out.println("Do you want to login? Y/N: ");
@@ -159,15 +157,13 @@ public class EncryptionApp {
         }
     }
 
-    public boolean checkUser(String username, String password) throws Exception {
+    public boolean checkUser(String username, String password) {
         System.out.println("Enter you username: ");
         String enteredUsername = sc.next();
         if (username.equals(enteredUsername)) {
             System.out.println("Enter your password: ");
             String enteredPassword = sc.next();
-            if (password.equals(enteredPassword)) {
-                return true;
-            }
+            return password.equals(enteredPassword);
         }
         return false;
     }
