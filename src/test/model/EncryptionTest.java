@@ -21,12 +21,12 @@ public class EncryptionTest {
     @BeforeEach
     public void runBefore() throws Exception {
         pair = Encryption.getPair();
-        cipher = Encryption.cipher;
         encryption = new Encryption();
     }
 
     @Test
     public void testPassEncryption() throws Exception {
+        cipher = Encryption.cipher;
         String pass = "password";
         String dataName = "Chrome";
 

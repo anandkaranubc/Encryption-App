@@ -14,7 +14,7 @@ public class DecryptionTest {
 
     private static KeyPair pair;
     public static Cipher cipher;
-    byte[] cipherText;
+    byte[] cipherText, cipherText2;
     Decryption decryption;
     Encryption encryption;
 
@@ -29,9 +29,12 @@ public class DecryptionTest {
     @Test
     public void testPassDecryption() throws Exception {
         String a = "password";
+        String b = "pa";
         String dataName = "chrome";
         cipherText = encryption.passEncryption(a, dataName);
+        cipherText2 = encryption.passEncryption(b,"chrome2");
 
         assertEquals(a, Decryption.passDecryption(cipherText, pair));
+        assertEquals(b, Decryption.passDecryption(cipherText2, pair));
     }
 }
