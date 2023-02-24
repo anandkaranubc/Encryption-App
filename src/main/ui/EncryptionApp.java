@@ -168,8 +168,7 @@ public class EncryptionApp {
                 String password = passDecryption(cipher, model.Encryption.getPair());
                 System.out.println(EncryptionList.getDataNames().get(i) + ": " + password);
             }
-        }
-        else {
+        } else {
             System.out.println("Wrong credentials!!");
         }
         continueOrNot();

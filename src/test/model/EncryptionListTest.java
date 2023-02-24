@@ -130,5 +130,4 @@ public class EncryptionListTest {
         EncryptionList.getDataNames().clear();
         EncryptionList.getEncryptedCiphers().clear();
     }
-
 }
