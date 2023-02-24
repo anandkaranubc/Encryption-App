@@ -1,23 +1,22 @@
 package model;
 
 import javax.crypto.Cipher;
+import javax.crypto.NoSuchPaddingException;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 
 public class Encryption {
-    private static final KeyPair pair;
+    private static KeyPair pair;
     static Cipher cipher;
     byte[] cipherText;
+    static KeyPairGenerator keyPairGen;
 
-    static {
-        try {
-            KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
-            keyPairGen.initialize(2048);
-            pair = keyPairGen.generateKeyPair();
-            cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to initialize Encryption", e);
-        }
+    public Encryption() throws NoSuchPaddingException, NoSuchAlgorithmException {
+        keyPairGen = KeyPairGenerator.getInstance("RSA");
+        keyPairGen.initialize(2048);
+        pair = keyPairGen.generateKeyPair();
+        cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
     }
 
     public byte[] passEncryption(String pass, String dataName) throws Exception {

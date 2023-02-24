@@ -4,7 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.crypto.NoSuchPaddingException;
 import java.nio.charset.StandardCharsets;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public class EncryptionListTest {
     Encryption encryption1;
 
     @BeforeEach
-    public void runBefore() {
+    public void runBefore() throws NoSuchPaddingException, NoSuchAlgorithmException {
         EncryptionList encryptionList = new EncryptionList();
         encryptedCiphers = EncryptionList.getEncryptedCiphers();
         dataNames = EncryptionList.getDataNames();

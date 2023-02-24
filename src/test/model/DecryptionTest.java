@@ -35,8 +35,8 @@ public class DecryptionTest {
         cipherText = encryption.passEncryption(a, dataName);
         cipherText2 = encryption.passEncryption(b,"chrome2");
 
-        assertEquals(a, Decryption.passDecryption(cipherText, pair));
-        assertEquals(b, Decryption.passDecryption(cipherText2, pair));
+        assertEquals(a, Decryption.passDecryption(cipherText, Encryption.getPair()));
+        assertEquals(b, Decryption.passDecryption(cipherText2, Encryption.getPair()));
     }
 
     @AfterEach
