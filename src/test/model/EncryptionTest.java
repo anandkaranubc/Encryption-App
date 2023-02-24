@@ -1,6 +1,7 @@
 package model;
 
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +37,16 @@ public class EncryptionTest {
         byte[] decrypted = Encryption.cipher.doFinal(encrypted);
         assertEquals(pass, new String(decrypted));
 
+    }
+
+    @Test
+    public void testInitializeInvalidAlgorithm() {
+        try {
+            Encryption.initialize("INVALID_ALGORITHM");
+            Assertions.fail("Initialized with invalid algorithm");
+        } catch (Exception e) {
+            Assertions.assertEquals("INVALID_ALGORITHM KeyPairGenerator not available", e.getMessage());
+        }
     }
 
     @AfterEach

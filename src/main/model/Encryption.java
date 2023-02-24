@@ -12,11 +12,19 @@ public class Encryption {
     byte[] cipherText;
     static KeyPairGenerator keyPairGen;
 
-    public Encryption() throws NoSuchPaddingException, NoSuchAlgorithmException {
-        keyPairGen = KeyPairGenerator.getInstance("RSA");
+    static {
+        try {
+            initialize("RSA");
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to initialize Encryption", e);
+        }
+    }
+
+    public static void initialize(String algorithm) throws Exception {
+        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(algorithm);
         keyPairGen.initialize(2048);
         pair = keyPairGen.generateKeyPair();
-        cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+        cipher = Cipher.getInstance(algorithm + "/ECB/PKCS1Padding");
     }
 
     public byte[] passEncryption(String pass, String dataName) throws Exception {

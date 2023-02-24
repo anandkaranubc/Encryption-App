@@ -19,7 +19,7 @@ public class EncryptionListTest {
     Encryption encryption1;
 
     @BeforeEach
-    public void runBefore() throws NoSuchPaddingException, NoSuchAlgorithmException {
+    public void runBefore() throws Exception {
         EncryptionList encryptionList = new EncryptionList();
         encryptedCiphers = EncryptionList.getEncryptedCiphers();
         dataNames = EncryptionList.getDataNames();
