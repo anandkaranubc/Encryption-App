@@ -7,7 +7,7 @@ import model.EncryptionList;
 import java.util.List;
 import java.util.Scanner;
 
-import static model.DecryptionList.searchDataName;
+import static model.Decryption.passDecryption;
 
 public class EncryptionApp {
     Encryption encrypt = null;
@@ -92,7 +92,6 @@ public class EncryptionApp {
         }
     }
 
-    @SuppressWarnings("methodlength")
     private void displaySecondMenu() throws Exception {
         System.out.println("\nSelect from:");
         System.out.println("\t1 -> Encryption");
@@ -103,49 +102,77 @@ public class EncryptionApp {
         int choice = sc.nextInt();
 
         if (choice == 1) {
-            System.out.println("Redirecting to Encryption Page....\n\n");
-            System.out.println("Enter the Data name that you want to encrypt");
-            String dataName = sc.next();
-            System.out.println("Enter the password you want to encrypt: ");
-            String pass = sc.next();
-            this.encrypt = new Encryption();
-            this.cipherText = encrypt.passEncryption(pass, dataName);
-
-            continueOrNot();
+            getEncryptionPage();
         } else if (choice == 2) {
-            System.out.println("Redirecting to Decryption Page....\n\n");
-            boolean valid = checkUser(username, password);
-
-            if (valid) {
-                System.out.print("What data name's password do you want to decrypt?: ");
-                String dataName = sc.next();
-                searchDataName(dataName);
-            } else {
-                System.out.println("Wrong credentials!!!");
-            }
-            continueOrNot();
+            getDecryptionPage();
         } else if (choice == 3) {
-            System.out.println("Redirecting to Encryption List Page....\n\n");
-            List<String> encryptedStringsList = EncryptionList.encryptedStringList();
-            for (int i = 0; i < encryptedStringsList.size(); i++) {
-                System.out.println(EncryptionList.getDataNames().get(i) + ": " + encryptedStringsList.get(i));
-            }
-            continueOrNot();
-
+            getEncryptionListPage();
         } else if (choice == 4) {
-            System.out.println("Redirecting to Decryption List Page....\n\n");
-            boolean valid = checkUser(username, password);
-            if (valid) {
-                DecryptionList.printDecryptedStrings();
-            } else {
-                System.out.println("Wrong credentials!!");
-            }
-            continueOrNot();
-
+            getDecryptionListPage();
         } else {
             System.out.println("Invalid choice. Please try again.");
             displaySecondMenu();
         }
+    }
+
+    private void getEncryptionPage() throws Exception {
+        System.out.println("Redirecting to Encryption Page....\n\n");
+        System.out.println("Enter the Data name that you want to encrypt");
+        String dataName = sc.next();
+        System.out.println("Enter the password you want to encrypt: ");
+        String pass = sc.next();
+        this.encrypt = new Encryption();
+        this.cipherText = encrypt.passEncryption(pass, dataName);
+
+        continueOrNot();
+    }
+
+    private void getDecryptionPage() throws Exception {
+        System.out.println("Redirecting to Decryption Page....\n\n");
+        boolean valid = checkUser(username, password);
+
+        if (valid) {
+            System.out.print("What data name's password do you want to decrypt?: ");
+            String dataName = sc.next();
+            DecryptionList decryptionList = new DecryptionList();
+            int index = decryptionList.getDataNameIndex(dataName);
+            if (index == -1) {
+                System.out.println("Sorry, data name not found.");
+            } else {
+                String answer = decryptionList.getDecryptedStringAtIndex(index);
+                System.out.println("Your password for " + dataName + " is: " + answer);
+            }
+
+        } else {
+            System.out.println("Wrong credentials!!!");
+        }
+        continueOrNot();
+    }
+
+    private void getEncryptionListPage() throws Exception {
+        System.out.println("Redirecting to Encryption List Page....\n\n");
+        List<String> encryptedStringsList = EncryptionList.encryptedStringList();
+        for (int i = 0; i < encryptedStringsList.size(); i++) {
+            System.out.println(EncryptionList.getDataNames().get(i) + ": " + encryptedStringsList.get(i));
+        }
+        continueOrNot();
+    }
+
+    private void getDecryptionListPage() throws Exception {
+        System.out.println("Redirecting to Decryption List Page....\n\n");
+        boolean valid = checkUser(username, password);
+
+        if (valid) {
+            for (int i = 0; i < EncryptionList.getEncryptedCiphers().size(); i++) {
+                byte [] cipher = EncryptionList.getEncryptedCiphers().get(i);
+                String password = passDecryption(cipher, model.Encryption.getPair());
+                System.out.println(EncryptionList.getDataNames().get(i) + ": " + password);
+            }
+        }
+        else {
+            System.out.println("Wrong credentials!!");
+        }
+        continueOrNot();
     }
 
     private void continueOrNot() throws Exception {
