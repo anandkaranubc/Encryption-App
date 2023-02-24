@@ -11,12 +11,13 @@ import static model.DecryptionList.searchDataName;
 public class EncryptionApp {
     Encryption encrypt = null;
     byte[] cipherText = new byte[0];
-    private static String username, password;
+    private static String username;
+    private static String password;
     static int count = 0;
 
     Scanner sc = new Scanner(System.in);
 
-    public EncryptionApp (int n) throws Exception {
+    public EncryptionApp(int n) throws Exception {
         this.username =  username;
         this.password = password;
 
@@ -28,7 +29,7 @@ public class EncryptionApp {
             } else {
                 runLogin(username, password);
             }
-        } else if (n == 0){
+        } else if (n == 0) {
             runSignUp();
             runLogin(username, password);
         } else {
@@ -92,6 +93,7 @@ public class EncryptionApp {
         }
     }
 
+    @SuppressWarnings("methodlength")
     private void displaySecondMenu() throws Exception {
         System.out.println("\nSelect from:");
         System.out.println("\t1 -> Encryption");
