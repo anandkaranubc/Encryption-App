@@ -3,14 +3,11 @@ package model;
 import javax.crypto.Cipher;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.util.Scanner;
 
 public class Encryption {
     private static KeyPair pair;
     static Cipher cipher;
     byte[] cipherText;
-
-    private Scanner sc = new Scanner(System.in);
 
     static {
         try {
@@ -26,7 +23,6 @@ public class Encryption {
     public byte[] passEncryption(String pass, String dataName) throws Exception {
         cipher.init(Cipher.ENCRYPT_MODE, pair.getPublic());
 
-
         EncryptionList.addDataName(dataName);
 
         byte[] input = pass.getBytes();
@@ -35,10 +31,6 @@ public class Encryption {
         EncryptionList.addEncryptedCiphers(cipherText);
 
         return cipherText;
-    }
-
-    private String getDataName(String dataName) {
-        return dataName;
     }
 
     public static KeyPair getPair() {

@@ -1,6 +1,7 @@
 package model;
 
 import model.Encryption;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -9,7 +10,6 @@ import java.security.KeyPair;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 
 public class EncryptionTest {
 
@@ -23,6 +23,13 @@ public class EncryptionTest {
         pair = Encryption.getPair();
         cipher = Encryption.cipher;
         encryption = new Encryption();
+    }
+
+    @Test
+    public void testInvalidAlgorithm() {
+        Assertions.assertThrows(Exception.class, () -> {
+            Cipher cipher = Cipher.getInstance("INVALID_ALGORITHM");
+        });
     }
 
     @Test
