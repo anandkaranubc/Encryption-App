@@ -13,6 +13,7 @@ public class Decryption {
 
     public static String passDecryption(byte[] cipherText, KeyPair pair) throws Exception {
         //Initializing the same cipher for decryption
+        Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, pair.getPrivate());
 
         //Decrypting the text

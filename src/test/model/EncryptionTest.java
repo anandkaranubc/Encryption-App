@@ -39,16 +39,6 @@ public class EncryptionTest {
 
     }
 
-    @Test
-    public void testInitializeInvalidAlgorithm() {
-        try {
-            Encryption.initialize("INVALID_ALGORITHM");
-            Assertions.fail("Initialized with invalid algorithm");
-        } catch (Exception e) {
-            Assertions.assertEquals("INVALID_ALGORITHM KeyPairGenerator not available", e.getMessage());
-        }
-    }
-
     @AfterEach
     public void resetEncryptionList() {
         EncryptionList.getDataNames().clear();

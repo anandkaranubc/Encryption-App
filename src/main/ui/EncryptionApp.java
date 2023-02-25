@@ -10,7 +10,7 @@ import java.util.Scanner;
 import static model.Decryption.passDecryption;
 
 public class EncryptionApp {
-    Encryption encrypt = null;
+    Encryption encrypt = Encryption.getInstance();
     byte[] cipherText = new byte[0];
     private static String username;
     private static String password;
@@ -121,7 +121,7 @@ public class EncryptionApp {
         String dataName = sc.next();
         System.out.println("Enter the password you want to encrypt: ");
         String pass = sc.next();
-        this.encrypt = new Encryption();
+        this.encrypt = Encryption.getInstance();
         this.cipherText = encrypt.passEncryption(pass, dataName);
 
         continueOrNot();

@@ -11,20 +11,20 @@ public class Encryption {
     static Cipher cipher;
     byte[] cipherText;
     static KeyPairGenerator keyPairGen;
+    private static Encryption instance;
 
-    static {
-        try {
-            initialize("RSA");
-        } catch (Exception e) {
-            throw new RuntimeException("Failed to initialize Encryption", e);
-        }
-    }
-
-    public static void initialize(String algorithm) throws Exception {
-        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance(algorithm);
+    public Encryption() throws Exception {
+        KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
         keyPairGen.initialize(2048);
         pair = keyPairGen.generateKeyPair();
-        cipher = Cipher.getInstance(algorithm + "/ECB/PKCS1Padding");
+        cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+    }
+
+    public static synchronized Encryption getInstance() throws Exception {
+        if (instance == null) {
+            instance = new Encryption();
+        }
+        return instance;
     }
 
     public byte[] passEncryption(String pass, String dataName) throws Exception {
