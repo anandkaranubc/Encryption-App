@@ -2,27 +2,23 @@
 
 ## What will the application do?
 
-This application is a one-stop solution for all your encryption needs.
-The prime features include:
+The Multipurpose Encryption App is a Java-based desktop application that provides users with the ability to encrypt and 
+decrypt passwords using the RSA algorithm. It maintains a list of encrypted passwords and their corresponding data names, 
+making it easy to retrieve passwords when needed. 
+This application is a one-stop solution for all your password encryption needs. It has a login/signup interface for the 
+user to enjoy the prime features of this application including:
 
-- **Password Manager**: Easily store and manage all your passwords in one secure place. Say goodbye to password fatigue!
-
-
-- **File Encryption/Decryption**: Protect your sensitive files and documents with strong encryption. Keep your data confidential and secure.
-
-
-- **Network Scanner**: Stay ahead of potential security threats by scanning your network for open ports and vulnerable services.
-
-Additional features may also include, but not yet confirmed to be implemented are:
+- **Encryption**: Easily encrypt a password and store it in the form of a list with the corresponding data name.
 
 
-- **Intrusion Detection System**: Stay alerted to suspicious network activity and potential security breaches.
+- **Decrypt**: Decrypt an encrypted password and retrieve the original password.
 
-- **Firewall**: Filter incoming and outgoing network traffic with customizable security rules.
 
-- **Steganography Tool**: Hide messages or files in plain sight with this advanced tool.
+- **Encryption List**: Maintain a list of encrypted ciphers (passwords) and their corresponding data names.
 
-- **Hash Generator**: Ensure data integrity and authenticity with easy-to-use hash generation.
+
+- **Decryption List**: Get a list of all your decrypted passwords with their corresponding data names.
+
 
 ## Why Choose This Application?
 - User-friendly interface
@@ -36,7 +32,7 @@ This encryption application is suitable for anyone who is concerned about the se
 
 - Individuals who frequently use multiple passwords for different websites and applications
 - Businesses that handle sensitive data and need to protect their confidentiality
-- IT professionals who need to monitor network security and detect potential threats
+- IT professionals who need to monitor password security and detect potential threats
 - Anyone who wants to ensure the integrity and authenticity of their data
 
 This application is designed to cater to the needs of all users, regardless of their technical expertise, making it an excellent choice for anyone who values their data security.
@@ -47,15 +43,15 @@ cyber-attacks are becoming increasingly common, it is crucial to ensure that sen
 
 ## User Stories
 
-* As a security-conscious individual, I want to securely store my passwords for different websites and applications, so that I can easily access them without having to remember each one.
+* As a user, I will be able to sign up and login into the application
 
-* As a business owner, I want to encrypt sensitive files and documents to protect confidential information from falling into the wrong hands.
+* As a user, I will be able to provide a name for my data and its corresponding password, and encrypt it.
 
-* As a network administrator, I want to scan my network for open ports, vulnerable services, and security threats to maintain the security of my network.
+* As a user, I will be able to decrypt any of my encrypted passwords.
 
-* As a user, I want to hide messages or files inside other files to protect their confidentiality, without altering their appearance.
+* As a user, I will be able to see a list of my encrypted passwords with their corresponding data names.
 
-* As a software developer, I want to generate hashes for files or strings to ensure the integrity and authenticity of data, in order to avoid any tampering of data.
+* As a user, I will be able to see a list of my decrypted passwords with their corresponding data names.
 
 <h1 align="center">
  Try it out today!
