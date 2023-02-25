@@ -25,6 +25,8 @@ public class Encryption {
     static KeyPairGenerator keyPairGen;
     private static Encryption instance;
 
+//    Modifies: this.pair, this.cipher
+//    Effects: Generates a new key pair and cipher for the Encryption object.
     public Encryption() throws Exception {
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
         keyPairGen.initialize(2048);
@@ -32,6 +34,10 @@ public class Encryption {
         cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
     }
 
+//    Modifies: this.instance
+//    Effects: If instance is null, creates a new instance of the Encryption class, otherwise returns the existing
+//    instance.
+//    Returns the instance of the Encryption class.
     public static synchronized Encryption getInstance() throws Exception {
         if (instance == null) {
             instance = new Encryption();
@@ -39,6 +45,11 @@ public class Encryption {
         return instance;
     }
 
+//    Requires: pass and dataName are not null.
+//    Modifies: EncryptionList.getDataNames(), EncryptionList.getEncryptedCiphers(), this.cipherText
+//    Effects: Initializes the cipher with the public key from the key pair, adds the data name to the EncryptionList,
+//             encrypts the password using the cipher, adds the encrypted password to the EncryptionList, and returns
+//             the encrypted password as a byte array.
     public byte[] passEncryption(String pass, String dataName) throws Exception {
         cipher.init(Cipher.ENCRYPT_MODE, pair.getPublic());
 

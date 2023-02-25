@@ -16,24 +16,33 @@ public class EncryptionList {
      * - Call addDataName() method to add a data name to the list.
      * - Call getEncryptedCiphers() method to get a list of encrypted ciphers.
      * - Call getDataNames() method to get a list of data names.
-     * - Call encryptedStringList() method to get a list of encrypted strings converted from byte array using UTF-8 charset.
+     * - Call encryptedStringList() method to get a list of encrypted strings converted from byte array using UTF-8
+     * charset.
      */
 
     private static List<byte[]> encryptedCiphers = new ArrayList<>();
     private static List<String> dataNames = new ArrayList<>();
 
+//    Requires: a byte array of cipher text to add to the list of encrypted ciphers.
+//    Modifies: this.encryptedCiphers
+//    Effects: adds the given byte array of cipher text to the list of encrypted ciphers.
     public static void addEncryptedCiphers(byte[] cipherText) {
         encryptedCiphers.add(cipherText);
     }
 
+//    Requires: a String object representing the name of the data corresponding to the cipher text to add to the list.
+//    Modifies: this.dataNames
+//    Effects: adds the given data name to the list of data names.
     public static void addDataName(String dataName) {
         dataNames.add(dataName);
     }
 
+//    Effects: returns a list of Strings containing the encrypted ciphers converted from byte arrays using the UTF-8
+//    character set.
     public static List<String> encryptedStringList() {
         List<String> encryptedStrings = new ArrayList<>();
-        for (int i = 0; i < encryptedCiphers.size(); i++) {
-            encryptedStrings.add(new String(encryptedCiphers.get(i), StandardCharsets.UTF_8));
+        for (byte[] encryptedCipher : encryptedCiphers) {
+            encryptedStrings.add(new String(encryptedCipher, StandardCharsets.UTF_8));
         }
         return encryptedStrings;
     }

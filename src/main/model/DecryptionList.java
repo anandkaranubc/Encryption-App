@@ -21,10 +21,16 @@ public class DecryptionList {
     static List<byte []> encryptedCiphers = EncryptionList.getEncryptedCiphers();
     static List<String> dataNames = EncryptionList.getDataNames();
 
+//    Requires: dataName is a non-null String.
+//    Effects: Returns an integer that represents the index of the cipher text in encryptedCiphers list.
+//    Returns -1 if the dataName is not present in dataNames list.
     public int getDataNameIndex(String dataName) {
         return dataNames.indexOf(dataName);
     }
 
+//    Requires: index is a non-negative integer that is less than the size of encryptedCiphers.
+//    Effects: Returns a String that represents the decrypted text of the cipher text at the given index in
+//    the encryptedCiphers list.
     public String getDecryptedStringAtIndex(int index) throws Exception {
         return passDecryption(encryptedCiphers.get(index), model.Encryption.getPair());
     }

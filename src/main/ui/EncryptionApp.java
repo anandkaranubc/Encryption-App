@@ -31,6 +31,7 @@ public class EncryptionApp {
 
     Scanner sc = new Scanner(System.in);
 
+//    Effects: Creates an instance of EncryptionApp based on the choice of the user
     public EncryptionApp(int n) throws Exception {
 
         if (n == 1) {
@@ -50,6 +51,13 @@ public class EncryptionApp {
         }
     }
 
+//    Requires: The method requires a valid input scanner object "sc" to take input from the user.
+//
+//    Modifies: The method modifies the instance variables "username", "password" and "count" of the class.
+//
+//    Effects: The method displays a message to welcome the user to the sign-up page and prompts the user to enter a
+//    username and password. It then stores the username and password in the instance variables of the class. The method
+//    also increments the count variable to keep track of the number of sign-up attempts.
     private void runSignUp() throws Exception {
         System.out.println("Welcome to the Signup Page");
         System.out.println("Enter you username: ");
@@ -70,6 +78,18 @@ public class EncryptionApp {
         }
     }
 
+//    Requires: The method requires a valid input scanner object "sc" to take input from the user. It also requires the
+//    input parameters "username" and "password" to check if the entered credentials match the stored values.
+//
+//    Modifies: The method does not modify any instance variables of the class.
+//
+//    Effects: The method displays a message to welcome the user to the login page and prompts the user to enter
+//    their username. If the entered username matches the stored username, the method prompts the user to enter their
+//    password. If the entered password matches the stored password, the method displays a message to congratulate the
+//    user for logging in and redirects the user to the second menu. If the entered password does not match the stored
+//    password, the method displays a message to prompt the user to enter the password again and calls the runLogin
+//    method recursively. If the entered username does not match the stored username, the method displays a message to
+//    prompt the user to enter the username again and calls the displayFirstMenu method.
     private void runLogin(String username, String password) throws Exception {
         System.out.println("Welcome to the Login Page");
         System.out.println("Enter you username: ");
@@ -93,6 +113,7 @@ public class EncryptionApp {
         }
     }
 
+    // Effects: displays the signup and login page
     protected void displayFirstMenu() throws Exception {
         System.out.println("\nSelect from:");
         System.out.println("\t0 -> Signup");
@@ -105,6 +126,8 @@ public class EncryptionApp {
         }
     }
 
+    // Effects: displays the menu page which shows different options for
+    // encryption, decryption, encryption list and decryption list
     private void displaySecondMenu() throws Exception {
         System.out.println("\nSelect from:");
         System.out.println("\t1 -> Encryption");
@@ -128,6 +151,7 @@ public class EncryptionApp {
         }
     }
 
+    // Effects: redirects to the encryption page where the user can encrypt their passwords
     private void getEncryptionPage() throws Exception {
         System.out.println("Redirecting to Encryption Page....\n\n");
         System.out.println("Enter the Data name that you want to encrypt");
@@ -140,6 +164,7 @@ public class EncryptionApp {
         continueOrNot();
     }
 
+    // Effects: redirects to the decryption page where the user can decrypt their passwords
     private void getDecryptionPage() throws Exception {
         System.out.println("Redirecting to Decryption Page....\n\n");
         boolean valid = checkUser(username, password);
@@ -162,6 +187,7 @@ public class EncryptionApp {
         continueOrNot();
     }
 
+    // Effects: redirects to the encryption list page where the user can see the encrypted list of their passwords
     private void getEncryptionListPage() throws Exception {
         System.out.println("Redirecting to Encryption List Page....\n\n");
         List<String> encryptedStringsList = EncryptionList.encryptedStringList();
@@ -171,6 +197,7 @@ public class EncryptionApp {
         continueOrNot();
     }
 
+    // Effects: redirects to the decryption list page where the user can see the decrypted list of their passwords
     private void getDecryptionListPage() throws Exception {
         System.out.println("Redirecting to Decryption List Page....\n\n");
         boolean valid = checkUser(username, password);
@@ -187,6 +214,7 @@ public class EncryptionApp {
         continueOrNot();
     }
 
+    // Effects: ask the user if they want to continue to the features page or not
     private void continueOrNot() throws Exception {
         System.out.println("Do you want to continue? Y/N: ");
         String choice1 = sc.next();
@@ -200,6 +228,8 @@ public class EncryptionApp {
         }
     }
 
+    // Requires: username and password are non-null Strings
+    // Effects: checks if username and passwords are correct
     public boolean checkUser(String username, String password) {
         System.out.println("Enter you username: ");
         String enteredUsername = sc.next();
