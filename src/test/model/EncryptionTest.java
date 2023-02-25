@@ -12,6 +12,14 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EncryptionTest {
 
+    /**
+
+     This class contains JUnit tests for the Encryption class.
+     It tests the functionality of all the methods of the Encryption class using a public/private key pair.
+     The test class also resets the EncryptionList data between each test using the @AfterEach annotation.
+
+     */
+
     private static KeyPair pair;
     public static Cipher cipher;
     byte[] cipherText;

@@ -4,9 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import javax.crypto.NoSuchPaddingException;
 import java.nio.charset.StandardCharsets;
-import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +12,15 @@ import static model.EncryptionList.encryptedStringList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EncryptionListTest {
+
+    /**
+
+     This class contains JUnit tests for the EncryptionList class.
+     It tests the functionality of all the methods of the EncryptionList class.
+     The test class also resets the EncryptionList data between each test using the @AfterEach annotation.
+
+     */
+
     public static List<byte[]> encryptedCiphers = new ArrayList<>();
     public static List<String> dataNames = new ArrayList<>();
     Encryption encryption1;

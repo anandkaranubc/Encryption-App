@@ -4,6 +4,14 @@ import java.util.Scanner;
 
 public class Main {
 
+    /**
+
+     This class represents the entry point of the EncryptionApp program. It prompts the user to select either signup
+     or login options and based on the user's choice, it creates an object of the EncryptionApp class to perform the
+     corresponding operation. The program utilizes the Scanner class to accept user input from the console.
+
+     */
+
     public static void main(String[] args) throws Exception {
 
         Scanner sc = new Scanner(System.in);

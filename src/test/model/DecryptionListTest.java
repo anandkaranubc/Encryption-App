@@ -10,6 +10,15 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DecryptionListTest {
+
+    /**
+
+     This class contains JUnit tests for the DecryptionList class.
+     It tests the functionality of all the methods of the DecryptionList class.
+     The test class also resets the EncryptionList data between each test using the @AfterEach annotation.
+
+     */
+
     public static List<byte[]> encryptedCiphers = new ArrayList<>();
     public static List<String> dataNames = new ArrayList<>();
     Encryption encryption1;

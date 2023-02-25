@@ -10,6 +10,19 @@ import java.util.Scanner;
 import static model.Decryption.passDecryption;
 
 public class EncryptionApp {
+
+    /**
+
+     The EncryptionApp class implements a console-based user interface for a password management system.
+     It provides functionality for user signup and login, encryption and decryption of passwords,
+     and listing all encrypted passwords. It interacts with the model classes Encryption, DecryptionList,
+     and EncryptionList to perform encryption and decryption operations and store encrypted passwords.
+     This class is responsible for displaying the various menu options and processing user input to call the
+     appropriate methods. It is also responsible for handling any exceptions that may be thrown during the
+     execution of these methods.
+
+     */
+
     Encryption encrypt = new Encryption();
     byte[] cipherText = new byte[0];
     private static String username;
