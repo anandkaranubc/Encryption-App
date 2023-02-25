@@ -5,6 +5,7 @@ import java.security.KeyPair;
 
 
 public class Decryption {
+    Encryption encryption = Encryption.getInstance();
     static Cipher cipher = model.Encryption.cipher;
 
     public Decryption() throws Exception {

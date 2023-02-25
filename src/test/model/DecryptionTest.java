@@ -24,7 +24,7 @@ public class DecryptionTest {
         pair = Encryption.getPair();
         cipher = Decryption.cipher;
         decryption = new Decryption();
-        encryption = new Encryption();
+        encryption = Encryption.getInstance();
     }
 
     @Test

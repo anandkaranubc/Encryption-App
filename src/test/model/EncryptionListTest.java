@@ -23,7 +23,7 @@ public class EncryptionListTest {
         EncryptionList encryptionList = new EncryptionList();
         encryptedCiphers = EncryptionList.getEncryptedCiphers();
         dataNames = EncryptionList.getDataNames();
-        encryption1 = new Encryption();
+        encryption1 = Encryption.getInstance();
     }
 
     @Test

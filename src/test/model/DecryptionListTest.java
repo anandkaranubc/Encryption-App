@@ -20,7 +20,7 @@ public class DecryptionListTest {
         EncryptionList encryptionList = new EncryptionList();
         encryptedCiphers = EncryptionList.getEncryptedCiphers();
         dataNames = EncryptionList.getDataNames();
-        encryption1 = new Encryption();
+        encryption1 = Encryption.getInstance();
         decryptionList = new DecryptionList();
     }
 

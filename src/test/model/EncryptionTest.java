@@ -20,7 +20,7 @@ public class EncryptionTest {
     @BeforeEach
     public void runBefore() throws Exception {
         pair = Encryption.getPair();
-        encryption = new Encryption();
+        encryption = Encryption.getInstance();
     }
 
     @Test
