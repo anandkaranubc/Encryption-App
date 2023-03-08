@@ -47,14 +47,19 @@ public class EncryptionList {
         return encryptedStrings;
     }
 
+    //EFFECTS: Returns the list of a byte[] of encrypted ciphers named encryptedCiphers
     public static List<byte []> getEncryptedCiphers() {
         return encryptedCiphers;
     }
 
+    //EFFECTS: Returns the list of a string of data names named dataNames
     public static List<String> getDataNames() {
         return dataNames;
     }
 
+//    REQUIRES: A non-null list of strings named dataNames containing the data names to be set
+//    EFFECTS: Sets the dataNames static field in the EncryptionList class to the given dataNames list.
+//    This static field will hold the list of data names to be used for encryption later.
     public static void setVariables(List<String> dataNames) {
         EncryptionList.dataNames = dataNames;
     }

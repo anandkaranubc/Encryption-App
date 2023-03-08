@@ -46,7 +46,7 @@ public class Encryption {
         return instance;
     }
 
-    //    Requires: pass and dataName are not null.
+//    Requires: pass and dataName are not null.
 //    Modifies: EncryptionList.getDataNames(), EncryptionList.getEncryptedCiphers(), this.cipherText
 //    Effects: Initializes the cipher with the public key from the key pair, adds the data name to the EncryptionList,
 //             encrypts the password using the cipher, adds the encrypted password to the EncryptionList, and returns
@@ -64,10 +64,16 @@ public class Encryption {
         return cipherText;
     }
 
+    //EFFECTS: Returns the KeyPair object named pair
     public static KeyPair getPair() {
         return pair;
     }
 
+//    REQUIRES: Two non-null lists of strings named passes and dataNames containing the passwords to be encrypted
+//    and the corresponding data names respectively.
+//    EFFECTS: Iterates through both lists simultaneously, encrypting each password in passes using the passEncryption
+//    method along with its corresponding data name in dataNames.
+//    Throws an Exception if any error occurs during the encryption process.
     public void passEncryptionInList(List<String> passes, List<String> dataNames) throws Exception {
         for (int i = 0; i < passes.size(); i++) {
             passEncryption(passes.get(i), dataNames.get(i));

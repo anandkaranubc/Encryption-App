@@ -14,8 +14,19 @@ import model.Progress;
 import org.json.*;
 import ui.EncryptionApp;
 
-// Represents a reader that reads workroom from JSON data stored in file
+// Represents a reader that reads progress from JSON data stored in file
 public class JsonReader {
+
+    /**
+
+     The JsonReader class represents a reader that reads progress from JSON data stored in a file.
+     It provides methods to read a JSON file and parse the progress data from it. The parsed data is used to
+     initialize an instance of the Progress class, which is returned by the read method. The class also contains
+     a helper method to extract a list of strings from a JSON object. The extracted data is used to initialize
+     variables in the Encryption and EncryptionList classes, and the username and password are set in the
+     EncryptionApp class. If an error occurs while reading the file, an IOException is thrown.
+     */
+
     private String source;
 
     // EFFECTS: constructs reader to read from source file
@@ -23,7 +34,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    // EFFECTS: reads workroom from file and returns it;
+    // EFFECTS: reads progress from file and returns it;
     // throws IOException if an error occurs reading data from file
     public Progress read() throws Exception {
         String jsonData = readFile(source);
@@ -42,7 +53,7 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    // EFFECTS: parses workroom from JSON object and returns it
+    // EFFECTS: parses progress from JSON object and returns it
     private Progress parseProgress(JSONObject jsonObject) throws Exception {
 
         List<String> dataNames = listExtractor(jsonObject, "dataNames");
@@ -60,6 +71,13 @@ public class JsonReader {
         return progress;
     }
 
+    //REQUIRES: A JSON object json to extract data from.
+    //A string key representing the key whose associated value is to be extracted from the JSON object.
+
+    //EFFECTS: Initializes a new empty ArrayList of String type to store the extracted data.
+    //Attempts to retrieve a JSON array associated with the given key from the input JSON object.
+    //If the JSON array is found, iterates over its elements and extracts each element as a string, adding it to the dataNames list.
+    //Returns the list of extracted data names, or an empty list if no data is found for the given key.
     public static List<String> listExtractor(JSONObject json, String key) {
         List<String> dataNames = new ArrayList<>();
         JSONArray dataNamesArray = json.optJSONArray(key);

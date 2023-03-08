@@ -37,6 +37,8 @@ public class DecryptionList {
         return passDecryption(encryptedCiphers.get(index), model.Encryption.getPair());
     }
 
+//    Effects: Returns a list of all the decrypted passwords present in the program which
+//    were added by the user
     public List<String> getDecryptedStrings() throws Exception {
         List<String> decryptedStrings = new ArrayList<>();
         for (int i = 0; i < encryptedCiphers.size(); i++) {
@@ -44,9 +46,4 @@ public class DecryptionList {
         }
         return decryptedStrings;
     }
-
-//    public List<String> getDataNames() {
-//        dataNames = EncryptionList.getDataNames();
-//        return dataNames;
-//    }
 }
