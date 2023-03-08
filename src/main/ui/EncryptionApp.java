@@ -93,8 +93,8 @@ public class EncryptionApp {
             System.out.println("Redirecting to Login Page.....\n\n");
             runLogin(username, password);
         } else {
-            System.out.println("Redirecting to Main Page.....\n\n");
-            displayFirstMenu();
+            System.out.println("Redirecting to End Page.....\n\n");
+            displayFinalMenu();
         }
     }
 
