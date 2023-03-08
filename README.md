@@ -53,9 +53,10 @@ cyber-attacks are becoming increasingly common, it is crucial to ensure that sen
 
 * As a user, I will be able to see a list of my decrypted passwords with their corresponding data names.
 
-* As a user, I will be able to load all my progress from a JSON file
+* As a user, when I start the application, I will be given the option to load my previous progress from a JSON file.
 
-* As a user, I will be able to save my progress to a JSON file (if I so choose)
+* As a user, when I select the quit option from the application menu, I will be reminded to save my current progress to 
+JSON file and have the option to do so or not.
 
 <h1 align="center">
  Try it out today!
