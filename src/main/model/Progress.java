@@ -9,7 +9,8 @@ import java.util.List;
 public class Progress implements Writable {
 
     static List<String> dataNames;
-    static String username, password;
+    static String username;
+    static String password;
 
     public Progress() {
         dataNames = EncryptionList.getDataNames();
