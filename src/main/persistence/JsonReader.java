@@ -76,7 +76,8 @@ public class JsonReader {
 
     //EFFECTS: Initializes a new empty ArrayList of String type to store the extracted data.
     //Attempts to retrieve a JSON array associated with the given key from the input JSON object.
-    //If the JSON array is found, iterates over its elements and extracts each element as a string, adding it to the dataNames list.
+    //If the JSON array is found, iterates over its elements and extracts each element as a string, adding it to
+    // the dataNames list.
     //Returns the list of extracted data names, or an empty list if no data is found for the given key.
     public static List<String> listExtractor(JSONObject json, String key) {
         List<String> dataNames = new ArrayList<>();

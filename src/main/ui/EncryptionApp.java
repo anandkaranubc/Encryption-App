@@ -219,7 +219,7 @@ public class EncryptionApp {
                 System.out.println(EncryptionList.getDataNames().get(i) + ": " + encryptedStringsList.get(i));
             }
         }
-            continueOrNot();
+        continueOrNot();
     }
 
     // Effects: redirects to the decryption list page where the user can see the decrypted list of their passwords
