@@ -31,7 +31,8 @@ public class Progress implements Writable {
     private JSONArray passToJson() throws Exception {
         DecryptionList decryptionList = new DecryptionList();
         JSONArray jsonArray = new JSONArray();
-        for (String pass : decryptionList.getDecryptedStrings()) {
+        List<String> decStr = decryptionList.getDecryptedStrings();
+        for (String pass : decStr) {
             jsonArray.put(pass);
         }
         return jsonArray;

@@ -1,5 +1,6 @@
 package persistence;
 
+import model.Encryption;
 import model.EncryptionList;
 import model.Progress;
 import org.junit.jupiter.api.AfterEach;
@@ -65,8 +66,11 @@ class JsonWriterTest {
     void testWriterGeneralWorkroom() {
         try {
             EncryptionApp.setVariables("username", "password");
-            EncryptionList.addDataName("Safari");
-            EncryptionList.addDataName("Mozilla");
+
+            Encryption encryption = Encryption.getInstance();
+            encryption.passEncryption("safari", "Safari");
+            encryption.passEncryption("mozilla", "Mozilla");
+
             Progress progress = new Progress();
             JsonWriter writer = new JsonWriter("./data/testWriterGeneralWorkroom.json");
             writer.open();

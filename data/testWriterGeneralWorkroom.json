@@ -4,6 +4,9 @@
         "Mozilla"
     ],
     "password": "password",
-    "passes": [],
+    "passes": [
+        "safari",
+        "mozilla"
+    ],
     "username": "username"
 }

@@ -46,12 +46,6 @@ public class Encryption {
         return instance;
     }
 
-    public static void setVariables(KeyPair pair, Cipher cipher, KeyPairGenerator keyPairGen) {
-        Encryption.pair = pair;
-        Encryption.cipher = cipher;
-        Encryption.keyPairGen = keyPairGen;
-    }
-
     //    Requires: pass and dataName are not null.
 //    Modifies: EncryptionList.getDataNames(), EncryptionList.getEncryptedCiphers(), this.cipherText
 //    Effects: Initializes the cipher with the public key from the key pair, adds the data name to the EncryptionList,
@@ -72,14 +66,6 @@ public class Encryption {
 
     public static KeyPair getPair() {
         return pair;
-    }
-
-    public static Cipher getCipher() {
-        return cipher;
-    }
-
-    public static KeyPairGenerator getKeyPairGen() {
-        return keyPairGen;
     }
 
     public void passEncryptionInList(List<String> passes, List<String> dataNames) throws Exception {

@@ -45,8 +45,8 @@ public class DecryptionList {
         return decryptedStrings;
     }
 
-    public List<String> getDataNames() {
-        dataNames = EncryptionList.getDataNames();
-        return dataNames;
-    }
+//    public List<String> getDataNames() {
+//        dataNames = EncryptionList.getDataNames();
+//        return dataNames;
+//    }
 }
