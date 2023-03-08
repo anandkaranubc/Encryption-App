@@ -3,6 +3,7 @@ package model;
 import javax.crypto.Cipher;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.util.List;
 
 public class Encryption {
 
@@ -45,7 +46,13 @@ public class Encryption {
         return instance;
     }
 
-//    Requires: pass and dataName are not null.
+    public static void setVariables(KeyPair pair, Cipher cipher, KeyPairGenerator keyPairGen) {
+        Encryption.pair = pair;
+        Encryption.cipher = cipher;
+        Encryption.keyPairGen = keyPairGen;
+    }
+
+    //    Requires: pass and dataName are not null.
 //    Modifies: EncryptionList.getDataNames(), EncryptionList.getEncryptedCiphers(), this.cipherText
 //    Effects: Initializes the cipher with the public key from the key pair, adds the data name to the EncryptionList,
 //             encrypts the password using the cipher, adds the encrypted password to the EncryptionList, and returns
@@ -65,5 +72,19 @@ public class Encryption {
 
     public static KeyPair getPair() {
         return pair;
+    }
+
+    public static Cipher getCipher() {
+        return cipher;
+    }
+
+    public static KeyPairGenerator getKeyPairGen() {
+        return keyPairGen;
+    }
+
+    public void passEncryptionInList(List<String> passes, List<String> dataNames) throws Exception {
+        for (int i = 0; i < passes.size(); i++) {
+            passEncryption(passes.get(i), dataNames.get(i));
+        }
     }
 }

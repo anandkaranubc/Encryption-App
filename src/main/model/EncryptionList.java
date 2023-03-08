@@ -54,4 +54,8 @@ public class EncryptionList {
     public static List<String> getDataNames() {
         return dataNames;
     }
+
+    public static void setVariables(List<String> dataNames) {
+        EncryptionList.dataNames = dataNames;
+    }
 }

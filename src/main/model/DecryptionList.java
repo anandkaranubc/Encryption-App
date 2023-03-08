@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static model.Decryption.passDecryption;
@@ -33,5 +34,13 @@ public class DecryptionList {
 //    the encryptedCiphers list.
     public String getDecryptedStringAtIndex(int index) throws Exception {
         return passDecryption(encryptedCiphers.get(index), model.Encryption.getPair());
+    }
+
+    public List<String> getDecryptedStrings() throws Exception {
+        List<String> decryptedStrings = new ArrayList<>();
+        for (int i = 0; i < encryptedCiphers.size(); i++) {
+            decryptedStrings.add(getDecryptedStringAtIndex(i));
+        }
+        return decryptedStrings;
     }
 }

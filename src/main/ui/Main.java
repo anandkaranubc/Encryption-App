@@ -19,6 +19,7 @@ public class Main {
         System.out.println("\nSelect from:");
         System.out.println("\t0 -> Signup");
         System.out.println("\t1 -> Login");
+        System.out.println("\t3 -> Load Progress");
         int choice =  sc.nextInt();
         new EncryptionApp(choice);
     }

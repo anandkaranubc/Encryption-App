@@ -3,7 +3,12 @@ package ui;
 import model.DecryptionList;
 import model.Encryption;
 import model.EncryptionList;
+import model.Progress;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,8 +27,12 @@ public class EncryptionApp {
      execution of these methods.
 
      */
+    private static final String JSON_STORE = "./data/user_data.json";
+    private Progress progress;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
-    Encryption encrypt = new Encryption();
+    Encryption encrypt = Encryption.getInstance();
     byte[] cipherText = new byte[0];
     private static String username;
     private static String password;
@@ -33,6 +42,9 @@ public class EncryptionApp {
 
 //    Effects: Creates an instance of EncryptionApp based on the choice of the user
     public EncryptionApp(int n) throws Exception {
+
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
 
         if (n == 1) {
             if (count == 0) {
@@ -45,13 +57,21 @@ public class EncryptionApp {
         } else if (n == 0) {
             runSignUp();
             runLogin(username, password);
+        } else if (n == 3) {
+            loadProgress();
+            runLogin(username, password);
         } else {
             System.out.println("Invalid Command! Please try again!");
             displayFirstMenu();
         }
     }
 
-//    Requires: The method requires a valid input scanner object "sc" to take input from the user.
+    public static void setVariables(String username, String password) {
+        EncryptionApp.username = username;
+        EncryptionApp.password = password;
+    }
+
+    //    Requires: The method requires a valid input scanner object "sc" to take input from the user.
 //
 //    Modifies: The method modifies the instance variables "username", "password" and "count" of the class.
 //
@@ -223,8 +243,51 @@ public class EncryptionApp {
             System.out.println("Redirecting to Features Page.....\n\n");
             displaySecondMenu();
         } else {
-            System.out.println("Redirecting to Main Page.....\n\n");
-            displayFirstMenu();
+            System.out.println("Redirecting to End Page.....\n\n");
+            displayFinalMenu();
+        }
+    }
+
+    private void displayFinalMenu() {
+        saveOrNot();
+    }
+
+    private void saveOrNot() {
+        System.out.print("Do you want to save your progress? Y/N: ");
+        String choice = sc.next();
+
+        if (choice.equals("Y") || choice.equals("y")) {
+            saveProgress();
+            System.exit(0);
+        } else {
+            System.out.println("File not saved.....");
+        }
+    }
+
+    private void saveProgress() {
+        try {
+            progress = new Progress();
+            jsonWriter.open();
+            jsonWriter.write(progress);
+            jsonWriter.close();
+            System.out.println("Saved " + username + "'s progress" + " to " + JSON_STORE);
+        } catch (FileNotFoundException e) {
+            System.out.println("Unable to write to file: " + JSON_STORE);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // MODIFIES: this
+    // EFFECTS: loads progress from file
+    private void loadProgress() {
+        try {
+            progress = jsonReader.read();
+            System.out.println("Loaded " + username + "'s progress from " + JSON_STORE);
+        } catch (IOException e) {
+            System.out.println("Unable to read from file: " + JSON_STORE);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -239,5 +302,13 @@ public class EncryptionApp {
             return password.equals(enteredPassword);
         }
         return false;
+    }
+
+    public static String getUsername() {
+        return username;
+    }
+
+    public static String getPassword() {
+        return password;
     }
 }
