@@ -1,12 +1,6 @@
 {
-    "dataNames": [
-        "us",
-        "uss"
-    ],
+    "dataNames": ["hello"],
     "password": "pa",
-    "passes": [
-        "pa",
-        "paa"
-    ],
+    "passes": ["world"],
     "username": "us"
 }

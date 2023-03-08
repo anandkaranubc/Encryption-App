@@ -8,9 +8,14 @@ import java.util.List;
 
 public class Progress implements Writable {
 
-    List<String> dataNames = EncryptionList.getDataNames();
-    String username = EncryptionApp.getUsername();
-    String password = EncryptionApp.getPassword();
+    static List<String> dataNames;
+    static String username, password;
+
+    public Progress() {
+        dataNames = EncryptionList.getDataNames();
+        username = EncryptionApp.getUsername();
+        password = EncryptionApp.getPassword();
+    }
 
     @Override
     public JSONObject toJson() throws Exception {
@@ -37,5 +42,29 @@ public class Progress implements Writable {
             jsonArray.put(name);
         }
         return jsonArray;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public int numDataNames() {
+        return dataNames.size();
+    }
+
+    public int numPasses() {
+        return EncryptionList.getEncryptedCiphers().size();
+    }
+
+    public List<String> getDataNames() {
+        return dataNames;
+    }
+
+    public void clearDataNames() {
+        dataNames.clear();
     }
 }

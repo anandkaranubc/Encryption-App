@@ -26,6 +26,7 @@ public class DecryptionList {
 //    Effects: Returns an integer that represents the index of the cipher text in encryptedCiphers list.
 //    Returns -1 if the dataName is not present in dataNames list.
     public int getDataNameIndex(String dataName) {
+        dataNames = EncryptionList.getDataNames();
         return dataNames.indexOf(dataName);
     }
 
@@ -42,5 +43,10 @@ public class DecryptionList {
             decryptedStrings.add(getDecryptedStringAtIndex(i));
         }
         return decryptedStrings;
+    }
+
+    public List<String> getDataNames() {
+        dataNames = EncryptionList.getDataNames();
+        return dataNames;
     }
 }

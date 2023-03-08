@@ -47,6 +47,7 @@ public class DecryptionListTest {
         data2 = "Chrome33";
         ciphertext2 = encryption1.passEncryption(pass2, data2);
 
+
         assertEquals(0, decryptionList.getDataNameIndex("Chrome2"));
         assertEquals(1, decryptionList.getDataNameIndex("Chrome33"));
         assertEquals(-1, decryptionList.getDataNameIndex("helloWorld"));
