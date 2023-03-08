@@ -53,6 +53,10 @@ cyber-attacks are becoming increasingly common, it is crucial to ensure that sen
 
 * As a user, I will be able to see a list of my decrypted passwords with their corresponding data names.
 
+* As a user, I will be able to load all my progress from a JSON file
+
+* As a user, I will be able to save my progress to a JSON file (if I so choose)
+
 <h1 align="center">
  Try it out today!
 </h1>
