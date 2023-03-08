@@ -71,28 +71,9 @@ public class JsonReader {
         if (dataNamesArray != null) {
             for (int i = 0; i < dataNamesArray.length(); i++) {
                 String name = dataNamesArray.optString(i);
-                if (name != null) {
-                    dataNames.add(name);
-                }
+                dataNames.add(name);
             }
         }
         return dataNames;
     }
-
-
-    public static KeyPair parseKeyPairString(String keyPairString) throws Exception {
-        // Parse the key pair string to extract the public and private keys
-        String[] keyStrings = keyPairString.split("\n");
-        byte[] publicKeyBytes = Base64.getDecoder().decode(keyStrings[0].getBytes("UTF-8"));
-        byte[] privateKeyBytes = Base64.getDecoder().decode(keyStrings[1].getBytes("UTF-8"));
-
-        // Generate a new KeyPair object from the extracted key material
-        KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-        X509EncodedKeySpec publicKeySpec = new X509EncodedKeySpec(publicKeyBytes);
-        PublicKey publicKey = keyFactory.generatePublic(publicKeySpec);
-        PKCS8EncodedKeySpec privateKeySpec = new PKCS8EncodedKeySpec(privateKeyBytes);
-        PrivateKey privateKey = keyFactory.generatePrivate(privateKeySpec);
-        return new KeyPair(publicKey, privateKey);
-    }
-
 }

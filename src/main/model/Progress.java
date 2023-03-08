@@ -64,8 +64,4 @@ public class Progress implements Writable {
     public List<String> getDataNames() {
         return dataNames;
     }
-
-    public void clearDataNames() {
-        dataNames.clear();
-    }
 }
