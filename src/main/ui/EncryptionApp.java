@@ -211,10 +211,15 @@ public class EncryptionApp {
     private void getEncryptionListPage() throws Exception {
         System.out.println("Redirecting to Encryption List Page....\n\n");
         List<String> encryptedStringsList = EncryptionList.encryptedStringList();
-        for (int i = 0; i < encryptedStringsList.size(); i++) {
-            System.out.println(EncryptionList.getDataNames().get(i) + ": " + encryptedStringsList.get(i));
+
+        if (encryptedStringsList.isEmpty()) {
+            System.out.println("The list is empty");
+        } else {
+            for (int i = 0; i < encryptedStringsList.size(); i++) {
+                System.out.println(EncryptionList.getDataNames().get(i) + ": " + encryptedStringsList.get(i));
+            }
         }
-        continueOrNot();
+            continueOrNot();
     }
 
     // Effects: redirects to the decryption list page where the user can see the decrypted list of their passwords
@@ -223,10 +228,17 @@ public class EncryptionApp {
         boolean valid = checkUser(username, password);
 
         if (valid) {
-            for (int i = 0; i < EncryptionList.getEncryptedCiphers().size(); i++) {
-                byte [] cipher = EncryptionList.getEncryptedCiphers().get(i);
-                String password = passDecryption(cipher, model.Encryption.getPair());
-                System.out.println(EncryptionList.getDataNames().get(i) + ": " + password);
+
+            List<byte []> encryptedCiphersList = EncryptionList.getEncryptedCiphers();
+
+            if (encryptedCiphersList.isEmpty()) {
+                System.out.println("The list is empty");
+            } else {
+                for (int i = 0; i < encryptedCiphersList.size(); i++) {
+                    byte[] cipher = EncryptionList.getEncryptedCiphers().get(i);
+                    String password = passDecryption(cipher, model.Encryption.getPair());
+                    System.out.println(EncryptionList.getDataNames().get(i) + ": " + password);
+                }
             }
         } else {
             System.out.println("Wrong credentials!!");
