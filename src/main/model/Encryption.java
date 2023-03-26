@@ -28,7 +28,7 @@ public class Encryption {
 
 //    Modifies: this.pair, this.cipher
 //    Effects: Generates a new key pair and cipher for the Encryption object.
-    public Encryption() throws Exception {
+    private Encryption() throws Exception {
         KeyPairGenerator keyPairGen = KeyPairGenerator.getInstance("RSA");
         keyPairGen.initialize(2048);
         pair = keyPairGen.generateKeyPair();

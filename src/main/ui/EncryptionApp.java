@@ -1,20 +1,23 @@
 package ui;
 
-import model.DecryptionList;
-import model.Encryption;
-import model.EncryptionList;
-import model.Progress;
+import model.*;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
+import javax.swing.JFrame;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+import javax.swing.*;
+
 import static model.Decryption.passDecryption;
 
-public class EncryptionApp {
+public class EncryptionApp extends JFrame {
 
     /**
 
@@ -27,6 +30,16 @@ public class EncryptionApp {
      execution of these methods.
 
      */
+
+    private JPanel contentPane;
+    private JButton loginButton;
+    private JButton signupButton;
+    private JButton loadProgressButton;
+    private JButton EncryptionButton;
+    private JButton DecryptionButton;
+    private JButton EncryptionListButton;
+    private JButton DecryptionListButton;
+
     private static final String JSON_STORE = "./data/user_data.json";
     private Progress progress;
     private JsonWriter jsonWriter;
@@ -40,7 +53,140 @@ public class EncryptionApp {
 
     Scanner sc = new Scanner(System.in);
 
-//    Effects: Creates an instance of EncryptionApp based on the choice of the user
+    public EncryptionApp() throws Exception {
+        setTitle("Login or Signup");
+        setSize(300, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        contentPane = new JPanel();
+        contentPane.setLayout(new GridLayout(3, 1));
+
+        loginButtonDisplay();
+        signUpButtonDisplay();
+        loadProgressButtonDisplay();
+
+        setContentPane(contentPane);
+        setVisible(true);
+    }
+
+    private void loadProgressButtonDisplay() {
+        loadProgressButton = new JButton("Load Progress");
+        loadProgressButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // open load progress JFrame
+                dispose();
+                loadProgress();
+                loginJFrame();
+            }
+        });
+        contentPane.add(loadProgressButton);
+    }
+
+    private void signUpButtonDisplay() {
+        signupButton = new JButton("Signup");
+        signupButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // open signup JFrame
+                dispose();
+                signUpJFrame();
+            }
+        });
+        contentPane.add(signupButton);
+    }
+
+    private void signUpJFrame() {
+        JFrame signupFrame = new JFrame("Signup");
+        signupFrame.setSize(300, 150);
+        signupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JPanel signupPanel = new JPanel();
+        signupPanel.setLayout(new GridLayout(3, 1));
+        JTextField usernameField = new JTextField();
+        JPasswordField passwordField = new JPasswordField();
+        JButton signupButton = new JButton("Signup");
+        signupButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // add user to database
+                signupFrame.dispose();
+                username = usernameField.getText();
+                password = passwordField.getText();
+                loginJFrame();
+            }
+        });
+        signupPanel.add(new JLabel("Username:"));
+        signupPanel.add(usernameField);
+        signupPanel.add(new JLabel("Password:"));
+        signupPanel.add(passwordField);
+        signupPanel.add(signupButton);
+        signupFrame.setContentPane(signupPanel);
+        signupFrame.setVisible(true);
+    }
+
+    private void loginButtonDisplay() {
+        loginButton = new JButton("Login");
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // open login JFrame
+                dispose();
+                loginJFrame();
+            }
+        });
+        contentPane.add(loginButton);
+    }
+
+    private void loginJFrame() {
+        JFrame loginFrame = new JFrame("Login");
+        loginFrame.setSize(300, 150);
+        loginFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        JPanel loginPanel = new JPanel();
+        loginPanel.setLayout(new GridLayout(3, 1));
+        JTextField usernameField = new JTextField();
+        JPasswordField passwordField = new JPasswordField();
+        JButton loginButton = new JButton("Login");
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // authenticate user with database
+                loginFrame.dispose();
+                if(checkUserCredentials(usernameField.getText(), passwordField.getText())) {
+                    MainMenuJFrame();
+                } else {
+                    JOptionPane.showMessageDialog(loginFrame, "Incorrect credentials",
+                            "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        loginPanel.add(new JLabel("Username:"));
+        loginPanel.add(usernameField);
+        loginPanel.add(new JLabel("Password:"));
+        loginPanel.add(passwordField);
+        loginPanel.add(loginButton);
+        loginFrame.setContentPane(loginPanel);
+        loginFrame.setVisible(true);
+    }
+
+    private void MainMenuJFrame() {
+        setTitle("Main Menu");
+        setSize(300, 150);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        contentPane = new JPanel();
+        contentPane.setLayout(new GridLayout(5, 1));
+
+        EncryptionButtonDisplay();
+        DecryptionButtonDisplay();
+        EncryptionListButtonDisplay();
+        DecryptionListButtonDisplay();
+        SaveAndExitButtonDisplay();
+        ExitWithoutSavingButtonDisplay();
+
+        setContentPane(contentPane);
+        setVisible(true);
+    }
+
+    private boolean checkUserCredentials(String enteredUsername, String enteredPassword) {
+        return (username.equals(enteredUsername) && password.equals(enteredPassword));
+    }
+
+    //    Effects: Creates an instance of EncryptionApp based on the choice of the user
     public EncryptionApp(int n) throws Exception {
 
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -295,11 +441,17 @@ public class EncryptionApp {
     private void loadProgress() {
         try {
             progress = jsonReader.read();
-            System.out.println("Loaded " + username + "'s progress from " + JSON_STORE);
+//          System.out.println("Loaded " + username + "'s progress from " + JSON_STORE);
+            JOptionPane.showMessageDialog(this, "Progress loaded", "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
         } catch (IOException e) {
-            System.out.println("Unable to read from file: " + JSON_STORE);
+//            System.out.println("Unable to read from file: " + JSON_STORE);
+            JOptionPane.showMessageDialog(this, "Unable to read from file: " + JSON_STORE,
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            throw new RuntimeException(e);
+//            throw new RuntimeException(e);
+            JOptionPane.showMessageDialog(this, "Program Failure", "Error",
+                    JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -323,4 +475,5 @@ public class EncryptionApp {
     public static String getPassword() {
         return password;
     }
+
 }

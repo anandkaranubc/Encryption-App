@@ -21,7 +21,7 @@ class JsonWriterTest {
     Progress progress;
 
     @BeforeEach
-    void runAfter() {
+    void runBefore() {
         EncryptionList.getDataNames().clear();
         EncryptionApp.setVariables(null, null);
         EncryptionList.getEncryptedCiphers().clear();
