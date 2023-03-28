@@ -1,6 +1,6 @@
 {
-    "dataNames": [],
-    "password": "pa",
-    "passes": [],
-    "username": "us"
+    "dataNames": ["k"],
+    "password": "a",
+    "passes": ["a"],
+    "username": "k"
 }
