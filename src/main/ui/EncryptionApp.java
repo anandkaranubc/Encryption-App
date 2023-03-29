@@ -8,6 +8,8 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
@@ -21,7 +23,7 @@ public class EncryptionApp extends JFrame {
 
     /**
 
-     The EncryptionApp class implements a console-based user interface for a password management system.
+     The EncryptionApp class implements a GUI-based user interface for a password management system.
      It provides functionality for user signup and login, encryption and decryption of passwords,
      and listing all encrypted passwords. It interacts with the model classes Encryption, DecryptionList,
      and EncryptionList to perform encryption and decryption operations and store encrypted passwords.
@@ -65,7 +67,7 @@ public class EncryptionApp extends JFrame {
 
         setTitle("Login or Signup");
         setSize(300, 150);
-        setPosition(300, 150);
+        setLocationRelativeTo(null);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -78,13 +80,6 @@ public class EncryptionApp extends JFrame {
 
         setContentPane(contentPane);
         setVisible(true);
-    }
-
-    private void setPosition(int width, int height) {
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (dim.width - width) / 2;
-        int y = (dim.height - height) / 2;
-        setLocation(x, y);
     }
 
     private void loadProgressButtonDisplay() {
@@ -125,12 +120,15 @@ public class EncryptionApp extends JFrame {
 
         signUpButtonPressed(signupFrame, usernameField, passwordField, signupButton);
 
-        exitButtonDisplay(signupFrame);
+        exitButton = new JButton("Exit");
+        exitButtonFirstPage(signupFrame);
+
         signupPanel.add(new JLabel("Username:"));
         signupPanel.add(usernameField);
         signupPanel.add(new JLabel("Password:"));
         signupPanel.add(passwordField);
         signupPanel.add(signupButton);
+        signupPanel.add(exitButton);
         signupFrame.setContentPane(signupPanel);
         signupFrame.setVisible(true);
     }
@@ -176,14 +174,30 @@ public class EncryptionApp extends JFrame {
 
         loginButtonPressed(loginFrame, usernameField, passwordField, loginButton);
 
-        exitButtonDisplay(loginFrame);
+        exitButton = new JButton("Exit");
+        exitButtonFirstPage(loginFrame);
+
         loginPanel.add(new JLabel("Username:"));
         loginPanel.add(usernameField);
         loginPanel.add(new JLabel("Password:"));
         loginPanel.add(passwordField);
         loginPanel.add(loginButton);
+        loginPanel.add(exitButton);
         loginFrame.setContentPane(loginPanel);
         loginFrame.setVisible(true);
+    }
+
+    private void exitButtonFirstPage(JFrame loginFrame) {
+        exitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                loginFrame.dispose();
+                try {
+                    new EncryptionApp();
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 
     private void loginButtonPressed(JFrame loginFrame, JTextField usernameField,
@@ -239,7 +253,7 @@ public class EncryptionApp extends JFrame {
     private void mainMenuJFrame() {
         setTitle("Main Menu");
         setSize(500, 250);
-        setPosition(300, 150);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentPane = new JPanel();
@@ -330,8 +344,7 @@ public class EncryptionApp extends JFrame {
         listFrame.setContentPane(scrollPane);
 
         listFrame.setVisible(true);
-        exitButtonDisplay(listFrame);
-        mainMenuJFrame();
+        windowClosingButton(listFrame);
     }
 
     private void encryptionListButtonDisplay() {
@@ -364,8 +377,15 @@ public class EncryptionApp extends JFrame {
         listFrame.setContentPane(scrollPane);
 
         listFrame.setVisible(true);
-        exitButtonDisplay(listFrame);
-        mainMenuJFrame();
+        windowClosingButton(listFrame);
+    }
+
+    private void windowClosingButton(JFrame listFrame) {
+        listFrame.addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
+                mainMenuJFrame();
+            }
+        });
     }
 
     private void decryptionButtonDisplay() {
