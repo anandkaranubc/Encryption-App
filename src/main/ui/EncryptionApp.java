@@ -136,10 +136,7 @@ public class EncryptionApp extends JFrame {
         exitButton = new JButton("Exit");
         exitButtonFirstPage(signupFrame);
 
-        signupPanel.add(new JLabel("Username:"));
-        signupPanel.add(usernameField);
-        signupPanel.add(new JLabel("Password:"));
-        signupPanel.add(passwordField);
+        usernameAndPasswordDisplay(signupPanel, "Username:", usernameField, passwordField);
 
         // Add a progress bar to show password strength
         JProgressBar strengthBar = new JProgressBar(0, 100);
@@ -150,13 +147,20 @@ public class EncryptionApp extends JFrame {
 
         signupPanel.add(signupButton);
         signupPanel.add(exitButton);
-
         signupFrame.setContentPane(signupPanel);
         signupFrame.setVisible(true);
     }
 
+    private void usernameAndPasswordDisplay(JPanel enteredPanel, String text, JTextField usernameField,
+                                            JPasswordField passwordField) {
+        enteredPanel.add(new JLabel(text));
+        enteredPanel.add(usernameField);
+        enteredPanel.add(new JLabel("Password:"));
+        enteredPanel.add(passwordField);
+    }
+
+    // EFFECTS: Add a DocumentListener to detect changes to the password field
     private void strengthBarDisplay(JPasswordField passwordField, JProgressBar strengthBar) {
-        // Add a DocumentListener to detect changes to the password field
         passwordField.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
@@ -281,10 +285,7 @@ public class EncryptionApp extends JFrame {
         exitButton = new JButton("Exit");
         exitButtonFirstPage(loginFrame);
 
-        loginPanel.add(new JLabel("Username:"));
-        loginPanel.add(usernameField);
-        loginPanel.add(new JLabel("Password:"));
-        loginPanel.add(passwordField);
+        usernameAndPasswordDisplay(loginPanel, "Username:", usernameField, passwordField);
         loginPanel.add(loginButton);
         loginPanel.add(exitButton);
         loginFrame.setContentPane(loginPanel);
@@ -590,10 +591,7 @@ public class EncryptionApp extends JFrame {
 
         exitButtonDisplay(encryptionFrame);
 
-        encryptionPanel.add(new JLabel("Data Name:"));
-        encryptionPanel.add(dataNameField);
-        encryptionPanel.add(new JLabel("Password:"));
-        encryptionPanel.add(passwordField);
+        usernameAndPasswordDisplay(encryptionPanel, "Data Name:", dataNameField, passwordField);
         encryptionPanel.add(encryptButton);
         encryptionPanel.add(exitButton);
         encryptionFrame.setContentPane(encryptionPanel);
