@@ -60,6 +60,12 @@ public class EncryptionApp extends JFrame {
     Scanner sc = new Scanner(System.in);
 
 
+    /**
+     * Constructs a new instance of the EncryptionApp class.
+     * REQUIRES: the JSON_STORE file is accessible and writable.
+     * EFFECTS: initializes a new EncryptionApp object with a title, size, location, and content pane.
+     * MODIFIES: this, jsonWriter, jsonReader, contentPane, loginButton, signUpButton, loadProgressButton
+     */
     public EncryptionApp() throws Exception {
 
         jsonWriter = new JsonWriter(JSON_STORE);
@@ -82,6 +88,12 @@ public class EncryptionApp extends JFrame {
         setVisible(true);
     }
 
+    /**
+     * REQUIRES: Nothing.
+     * MODIFIES: Nothing.
+     * EFFECTS: Initializes and adds a "Load Progress" button to the content pane. When clicked,
+     *          it opens a load progress JFrame, disposes the current frame, and opens the login JFrame.
+     */
     private void loadProgressButtonDisplay() {
         loadProgressButton = new JButton("Load Progress");
         loadProgressButton.addActionListener(new ActionListener() {
@@ -95,6 +107,8 @@ public class EncryptionApp extends JFrame {
         contentPane.add(loadProgressButton);
     }
 
+//    Effects: Creates a new JButton and sets an ActionListener that opens the signup JFrame when clicked.
+//    Adds the button to the contentPane of the current JFrame.
     private void signUpButtonDisplay() {
         signupButton = new JButton("Signup");
         signupButton.addActionListener(new ActionListener() {
@@ -107,6 +121,9 @@ public class EncryptionApp extends JFrame {
         contentPane.add(signupButton);
     }
 
+    /**
+     * EFFECTS: Displays the Signup JFrame to allow the user to create a new account.
+     */
     private void signUpJFrame() {
         JFrame signupFrame = new JFrame("Signup");
         signupFrame.setSize(300, 150);
@@ -133,11 +150,17 @@ public class EncryptionApp extends JFrame {
         signupFrame.setVisible(true);
     }
 
+//    Effects: This method sets an ActionListener to the sign-up button, which when clicked,
+//    adds the user's inputted username and password to the database and
+//    opens a JOptionPane message dialog to indicate that the sign-up was successful.
+//    The method also sets the username and password variables using the setVariables method from the EncryptionApp
+//    class and opens the login JFrame.
+//
+//    Modifies: username, password
     private void signUpButtonPressed(JFrame signupFrame, JTextField usernameField, JPasswordField passwordField,
                                      JButton signupButton) {
         signupButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // add user to database
                 signupFrame.dispose();
                 JOptionPane.showMessageDialog(signupFrame, "Sign Up Successful",
                         "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -149,6 +172,9 @@ public class EncryptionApp extends JFrame {
         });
     }
 
+    /**
+     EFFECTS: Displays the Login button in the main menu JFrame
+     */
     private void loginButtonDisplay() {
         loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener() {
@@ -161,6 +187,13 @@ public class EncryptionApp extends JFrame {
         contentPane.add(loginButton);
     }
 
+//    EFFECTS: This method creates a login JFrame with a username field, a password field, a login button,
+//    and an exit button. The method sets the size of the JFrame to 300 by 150 pixels, centers the JFrame on the screen,
+//    and sets the default close operation to DISPOSE_ON_CLOSE. The method also adds action listeners to the
+//    login button and exit button. When the login button is pressed, the loginButtonPressed() method is called,
+//    passing in the login JFrame, the username field, the password field, and the login button. When the exit
+//    button is pressed,
+//    the exitButtonFirstPage() method is called, passing in the login JFrame.
     private void loginJFrame() {
         JFrame loginFrame = new JFrame("Login");
         loginFrame.setSize(300, 150);
@@ -187,6 +220,8 @@ public class EncryptionApp extends JFrame {
         loginFrame.setVisible(true);
     }
 
+//    Disposes the current JFrame and creates a new instance of EncryptionApp
+//    when the exit button is pressed.
     private void exitButtonFirstPage(JFrame loginFrame) {
         exitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -200,6 +235,8 @@ public class EncryptionApp extends JFrame {
         });
     }
 
+//    sets the loginFrame visibility to false, and opens a new JFrame with the main menu if login is successful,
+//    otherwise displays an error message
     private void loginButtonPressed(JFrame loginFrame, JTextField usernameField,
                                     JPasswordField passwordField, JButton loginButton) {
         loginButton.addActionListener(new ActionListener() {
@@ -250,6 +287,11 @@ public class EncryptionApp extends JFrame {
 //        loginFrame.setVisible(true);
 //    }
 
+//    This method creates and sets up the main menu JFrame.
+//    It sets the title, size, location, and close operation of the JFrame.
+//    It creates a JPanel and sets its layout to a 3x1 grid.
+//    It then calls several methods to display various buttons on the JPanel.
+//    Finally, it sets the content pane of the JFrame to the JPanel and makes it visible.
     private void mainMenuJFrame() {
         setTitle("Main Menu");
         setSize(500, 250);
@@ -257,7 +299,7 @@ public class EncryptionApp extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         contentPane = new JPanel();
-        contentPane.setLayout(new GridLayout(5, 1));
+        contentPane.setLayout(new GridLayout(3, 1));
 
         encryptionButtonDisplay();
         decryptionButtonDisplay();
@@ -270,6 +312,10 @@ public class EncryptionApp extends JFrame {
         setVisible(true);
     }
 
+
+//    This method creates and adds an "Exit Without Saving" button to the main menu JFrame. When clicked,
+//    it disposes of the main menu JFrame and opens a confirmation JFrame asking the user if they are sure
+//    they want to exit without saving.
     private void exitWithoutSavingButtonDisplay() {
         exitWithoutSavingButton = new JButton("Exit Without Saving");
         exitWithoutSavingButton.addActionListener(new ActionListener() {
@@ -282,12 +328,16 @@ public class EncryptionApp extends JFrame {
         contentPane.add(exitWithoutSavingButton);
     }
 
+//    This method displays a message dialog indicating that the program has been exited without saving any changes,
+//    and then terminates the program with a successful exit status code.
     private void exitWithoutSavingJFrame() {
         JOptionPane.showMessageDialog(this, "Exited without Saving!",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
         System.exit(0);
     }
 
+//    This method creates a "Save & Exit" button and adds an ActionListener to it.
+//    When the button is clicked, the current JFrame is disposed and the saveAndExitJFrame() method is called.
     private void saveAndExitButtonDisplay() {
         saveAndExitButton = new JButton("Save & Exit");
         saveAndExitButton.addActionListener(new ActionListener() {
@@ -300,6 +350,8 @@ public class EncryptionApp extends JFrame {
         contentPane.add(saveAndExitButton);
     }
 
+//    This method saves the progress and displays a message dialog box to notify the user
+//    that their progress has been saved, then exits the application.
     private void saveAndExitJFrame() {
         saveProgress();
         JOptionPane.showMessageDialog(this, "Progress Saved!",
@@ -307,6 +359,10 @@ public class EncryptionApp extends JFrame {
         System.exit(0);
     }
 
+//    This method creates and displays a JButton labeled "Decryption List" and adds an ActionListener to it.
+//    When the button is clicked, it disposes the current JFrame and opens the decryption list JFrame.
+//    If an exception occurs while opening the decryption list JFrame, it throws a RuntimeException
+//    with the original exception as the cause.
     private void decryptionListButtonDisplay() {
         decryptionListButton = new JButton("Decryption List");
         decryptionListButton.addActionListener(new ActionListener() {
@@ -323,6 +379,11 @@ public class EncryptionApp extends JFrame {
         contentPane.add(decryptionListButton);
     }
 
+//    This method displays a JFrame that shows a list of decrypted passwords.
+//    The passwords are obtained from the EncryptionList class and decrypted using the passDecryption() method
+//    with the Encryption class's key pair. The decrypted passwords are added to a DefaultListModel which is used
+//    to create a JList. The JList is then added to a JScrollPane and set as the content pane of the listFrame.
+//    The windowClosingButton() method is also called to add functionality to the JFrame's close button.
     private void decryptionListJFrame() throws Exception {
         JFrame listFrame = new JFrame("Decryption List");
         listFrame.setSize(400, 300);
@@ -347,11 +408,17 @@ public class EncryptionApp extends JFrame {
         windowClosingButton(listFrame);
     }
 
+    /**
+     * Displays a button for opening the Encryption List JFrame.
+     * Sets an ActionListener for the button that disposes of the current JFrame
+     * and opens the Encryption List JFrame.
+     * MODIFIES: This method adds a JButton to the contentPane JPanel.
+     * EFFECTS: Clicking the button opens the Encryption List JFrame.
+     */
     private void encryptionListButtonDisplay() {
         encryptionListButton = new JButton("Encryption List");
         encryptionListButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                // open signup JFrame
                 dispose();
                 encryptionListJFrame();
             }
@@ -359,6 +426,7 @@ public class EncryptionApp extends JFrame {
         contentPane.add(encryptionListButton);
     }
 
+    // EFFECTS: displays a list of encrypted passwords with their respective data names
     private void encryptionListJFrame() {
         JFrame listFrame = new JFrame("Encryption List");
         listFrame.setSize(400, 300);
@@ -380,6 +448,7 @@ public class EncryptionApp extends JFrame {
         windowClosingButton(listFrame);
     }
 
+    // EFFECTS: displays the main menu when the user closes the displayed window
     private void windowClosingButton(JFrame listFrame) {
         listFrame.addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -388,6 +457,8 @@ public class EncryptionApp extends JFrame {
         });
     }
 
+    // EFFECTS: when button clicked, disposes of teh current frame and displays the
+//    decryption frame
     private void decryptionButtonDisplay() {
         decryptionButton = new JButton("Password Decryption");
         decryptionButton.addActionListener(new ActionListener() {
@@ -400,6 +471,7 @@ public class EncryptionApp extends JFrame {
         contentPane.add(decryptionButton);
     }
 
+    // EFFECTS: displays a menu which asks the user to add a data name and find its password
     private void decryptionJFrame() {
         JFrame decryptionFrame = new JFrame("Decryption");
         decryptionFrame.setSize(300, 150);
@@ -422,6 +494,7 @@ public class EncryptionApp extends JFrame {
         decryptionFrame.setVisible(true);
     }
 
+    // EFFECTS: displays a list of passwords with their respective data names
     private void decryptionButtonPressed(JFrame decryptionFrame, JTextField dataNameField, JButton decryptButton) {
         decryptButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -449,6 +522,7 @@ public class EncryptionApp extends JFrame {
         });
     }
 
+    // EFFECTS: when button pressed, loads the encryption menu
     private void encryptionButtonDisplay() {
         encryptionButton = new JButton("Password Encryption");
         encryptionButton.addActionListener(new ActionListener() {
@@ -461,6 +535,7 @@ public class EncryptionApp extends JFrame {
         contentPane.add(encryptionButton);
     }
 
+    // EFFECTS: displays a menu which allows the user to add a data name and password to encrypt
     private void encryptionJFrame() {
         JFrame encryptionFrame = new JFrame("Encryption");
         encryptionFrame.setSize(300, 150);
@@ -486,6 +561,7 @@ public class EncryptionApp extends JFrame {
         encryptionFrame.setVisible(true);
     }
 
+    // EFFECTS: encrypts the password with the given data name
     private void encryptionButtonPressed(JFrame encryptionFrame, JTextField dataNameField,
                                          JPasswordField passwordField, JButton encryptButton) {
         encryptButton.addActionListener(new ActionListener() {
@@ -505,6 +581,7 @@ public class EncryptionApp extends JFrame {
         });
     }
 
+    // EFFECTS: displays the exit button which take the user to the main menu frame when pressed
     private void exitButtonDisplay(JFrame enteredJFrame) {
         exitButton = new JButton("Exit");
         exitButton.addActionListener(new ActionListener() {
@@ -515,6 +592,7 @@ public class EncryptionApp extends JFrame {
         });
     }
 
+    // EFFECTS: returns true if the entered username and password matches with the original ones
     private boolean checkUserCredentials(String enteredUsername, String enteredPassword) {
         return (username.equals(enteredUsername) && password.equals(enteredPassword));
     }
@@ -550,7 +628,7 @@ public class EncryptionApp extends JFrame {
         EncryptionApp.password = password;
     }
 
-    //    Requires: The method requires a valid input scanner object "sc" to take input from the user.
+//    Requires: The method requires a valid input scanner object "sc" to take input from the user.
 //
 //    Modifies: The method modifies the instance variables "username", "password" and "count" of the class.
 //
@@ -577,7 +655,7 @@ public class EncryptionApp extends JFrame {
         }
     }
 
-    //    Requires: The method requires a valid input scanner object "sc" to take input from the user. It also requires the
+//    Requires: The method requires a valid input scanner object "sc" to take input from the user. It also requires the
 //    input parameters "username" and "password" to check if the entered credentials match the stored values.
 //
 //    Modifies: The method does not modify any instance variables of the class.
