@@ -22,6 +22,5 @@ public class Main {
 //        int choice =  sc.nextInt();
 
         EncryptionApp gui = new EncryptionApp();
-
     }
 }

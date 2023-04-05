@@ -58,6 +58,16 @@ cyber-attacks are becoming increasingly common, it is crucial to ensure that sen
 * As a user, when I select the quit option from the application menu, I will be reminded to save my current progress to 
 JSON file and have the option to do so or not.
 
+## Instructions for Grader
+
+- You can generate the first required action related to adding Xs (encrypted passwords and data names) to a Y (an encryption list) 
+by signing up with your username and password
+, logging into your account and choose the encryption or decryption option as per your requirement.
+- You can generate the second required action related to adding Xs (decrypted passwords and data names) to a Y (a decryption list) by logging into your account and choose the encryption or decryption option as per your requirement.
+- You can locate my visual component as a password strength meter by signing up with your username and password
+- You can save the state of my application by clicking the Save & Exit option from the Main Menu
+- You can reload the state of my application by clicking the Load Progress from the First Menu
+
 <h1 align="center">
  Try it out today!
 </h1>
