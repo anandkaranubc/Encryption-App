@@ -130,7 +130,18 @@ Decryption initiated\
 Wed Apr 12 07:54:17 PDT 2023\
 Decryption initiated\
 Wed Apr 12 07:54:17 PDT 2023\
-Added all the decrypted passwords to the Decryption List with their respective data names\
+Added all the decrypted passwords to the Decryption List with their respective data names
+
+## Phase 4: Task 3
+
+Reflecting on the design presented in my UML class diagram, I have identified two areas where I would perform 
+refactoring if I had more time to work on the project.
+
+Firstly, I would refactor the high number of public static methods in my code. While static methods provide easy access to different classes, they also increase the coupling between classes, making the code less modular and harder to maintain. To address this issue, I would reduce the number of static methods and implement the same functionality by private methods. This would help to improve the encapsulation of my code, making it easier to modify and update in the future.
+
+Secondly, I would refactor the way I store key pairs for encrypting and decrypting passwords. Currently, I am using only one key pair to encrypt and decrypt all passwords because it was hard to store all the pairs in the JSON file. However, this approach presents a potential security risk as a potential hacker could obtain all the passwords at once. To address this issue, I would refactor my code to store respective key pairs for each user's password in the JSON file. This would improve the security of my application by reducing the risk of all passwords being compromised at once.
+
+Thirdly, My application stores all the information but only of a single user. If I had more time, I would refactor the code to enable it to store information for multiple users. 
 
 <h1 align="center">
  Try it out today!
