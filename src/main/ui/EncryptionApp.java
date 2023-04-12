@@ -369,12 +369,19 @@ public class EncryptionApp extends JFrame {
         contentPane.add(exitWithoutSavingButton);
     }
 
+    public void printLog() {
+        EventLog eventLog = EventLog.getInstance();
+        for (Event e: eventLog) {
+            System.out.println(e);
+        }
+    }
+
 //    This method displays a message dialog indicating that the program has been exited without saving any changes,
 //    and then terminates the program with a successful exit status code.
     private void exitWithoutSavingJFrame() {
         JOptionPane.showMessageDialog(this, "Exited without Saving!",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
-        EventLog.getInstance().printLog();
+        printLog();
         System.exit(0);
     }
 
@@ -398,7 +405,7 @@ public class EncryptionApp extends JFrame {
         saveProgress();
         JOptionPane.showMessageDialog(this, "Progress Saved!",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
-        EventLog.getInstance().printLog();
+        printLog();
         System.exit(0);
     }
 

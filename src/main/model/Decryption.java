@@ -17,7 +17,6 @@ public class Decryption {
          decrypt the text.
      */
 
-    Encryption encryption = Encryption.getInstance();
     static Cipher cipher = model.Encryption.cipher;
 
 //  Modifies: this.cipher

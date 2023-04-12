@@ -1,16 +1,6 @@
 {
-    "dataNames": [
-        "Chrome",
-        "Safari",
-        "Git",
-        "Firefox"
-    ],
+    "dataNames": ["ka"],
     "password": "ka",
-    "passes": [
-        "chrome",
-        "safari",
-        "git",
-        "fireox"
-    ],
+    "passes": ["ka"],
     "username": "ka"
 }

@@ -44,19 +44,14 @@ public class EventLog implements Iterable<model.Event> {
         events.add(e);
     }
 
-    /**
-     * Clears the event log and logs the event.
-     */
-    public void clear() {
-        events.clear();
-        logEvent(new model.Event("Event log cleared."));
-    }
+//    /**
+//     * Clears the event log and logs the event.
+//     */
+//    public void clear() {
+//        events.clear();
+//        logEvent(new model.Event("Event log cleared."));
+//    }
 
-    public void printLog() {
-        for (Event e: events) {
-            System.out.println(e);
-        }
-    }
 
     @Override
     public Iterator<model.Event> iterator() {
