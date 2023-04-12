@@ -1,6 +1,7 @@
 package ui;
 
 import model.*;
+import model.Event;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 
@@ -373,6 +374,7 @@ public class EncryptionApp extends JFrame {
     private void exitWithoutSavingJFrame() {
         JOptionPane.showMessageDialog(this, "Exited without Saving!",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
+        EventLog.getInstance().printLog();
         System.exit(0);
     }
 
@@ -396,6 +398,7 @@ public class EncryptionApp extends JFrame {
         saveProgress();
         JOptionPane.showMessageDialog(this, "Progress Saved!",
                 "Success", JOptionPane.INFORMATION_MESSAGE);
+        EventLog.getInstance().printLog();
         System.exit(0);
     }
 

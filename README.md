@@ -68,6 +68,70 @@ by signing up with your username and password
 - You can save the state of my application by clicking the Save & Exit option from the Main Menu
 - You can reload the state of my application by clicking the Load Progress from the First Menu
 
+## Phase 4: Task 2
+
+Saved ka's progress to ./data/user_data.json\
+Wed Apr 12 07:53:28 PDT 2023\
+Encryption initiated\
+Wed Apr 12 07:53:28 PDT 2023\
+Added a data name: Chrome to the Encryption List\
+Wed Apr 12 07:53:28 PDT 2023\
+Added a data name: Chrome to the Decryption List\
+Wed Apr 12 07:53:28 PDT 2023\
+Added an encrypted password of Chrome to the Encryption List\
+Wed Apr 12 07:53:36 PDT 2023\
+Encryption initiated\
+Wed Apr 12 07:53:36 PDT 2023\
+Added a data name: Safari to the Encryption List\
+Wed Apr 12 07:53:36 PDT 2023\
+Added a data name: Safari to the Decryption List\
+Wed Apr 12 07:53:36 PDT 2023\
+Added an encrypted password of Safari to the Encryption List\
+Wed Apr 12 07:53:44 PDT 2023\
+Encryption initiated\
+Wed Apr 12 07:53:44 PDT 2023\
+Added a data name: Git to the Encryption List\
+Wed Apr 12 07:53:44 PDT 2023\
+Added a data name: Git to the Decryption List\
+Wed Apr 12 07:53:44 PDT 2023\
+Added an encrypted password of Git to the Encryption List\
+Wed Apr 12 07:53:48 PDT 2023\
+Searched for password of Git\
+Wed Apr 12 07:53:48 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:53:52 PDT 2023\
+Searched for password of Chrome\
+Wed Apr 12 07:53:52 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:53:58 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:53:58 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:53:58 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:54:06 PDT 2023\
+Encryption initiated\
+Wed Apr 12 07:54:06 PDT 2023\
+Added a data name: Firefox to the Encryption List\
+Wed Apr 12 07:54:06 PDT 2023\
+Added a data name: Firefox to the Decryption List\
+Wed Apr 12 07:54:06 PDT 2023\
+Added an encrypted password of Firefox to the Encryption List\
+Wed Apr 12 07:54:12 PDT 2023\
+Searched for password of Firefox\
+Wed Apr 12 07:54:12 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:54:17 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:54:17 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:54:17 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:54:17 PDT 2023\
+Decryption initiated\
+Wed Apr 12 07:54:17 PDT 2023\
+Added all the decrypted passwords to the Decryption List with their respective data names\
+
 <h1 align="center">
  Try it out today!
 </h1>

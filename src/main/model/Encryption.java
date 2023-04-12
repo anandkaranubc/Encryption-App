@@ -52,6 +52,7 @@ public class Encryption {
 //             encrypts the password using the cipher, adds the encrypted password to the EncryptionList, and returns
 //             the encrypted password as a byte array.
     public byte[] passEncryption(String pass, String dataName) throws Exception {
+        EventLog.getInstance().logEvent(new Event("Encryption initiated"));
         cipher.init(Cipher.ENCRYPT_MODE, pair.getPublic());
 
         EncryptionList.addDataName(dataName);
@@ -59,7 +60,7 @@ public class Encryption {
         byte[] input = pass.getBytes();
         cipher.update(input);
         cipherText = cipher.doFinal();
-        EncryptionList.addEncryptedCiphers(cipherText);
+        EncryptionList.addEncryptedCiphers(cipherText, dataName);
 
         return cipherText;
     }

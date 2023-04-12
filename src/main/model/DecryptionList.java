@@ -27,6 +27,7 @@ public class DecryptionList {
 //    Returns -1 if the dataName is not present in dataNames list.
     public int getDataNameIndex(String dataName) {
         dataNames = EncryptionList.getDataNames();
+        EventLog.getInstance().logEvent(new Event("Searched for password of " + dataName));
         return dataNames.indexOf(dataName);
     }
 
@@ -44,6 +45,8 @@ public class DecryptionList {
         for (int i = 0; i < encryptedCiphers.size(); i++) {
             decryptedStrings.add(getDecryptedStringAtIndex(i));
         }
+        EventLog.getInstance().logEvent(new Event("Added all the decrypted passwords to the Decryption List "
+                + "with their respective data names"));
         return decryptedStrings;
     }
 }

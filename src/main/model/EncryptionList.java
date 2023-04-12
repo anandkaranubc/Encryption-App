@@ -26,7 +26,10 @@ public class EncryptionList {
 //    Requires: a byte array of cipher text to add to the list of encrypted ciphers.
 //    Modifies: this.encryptedCiphers
 //    Effects: adds the given byte array of cipher text to the list of encrypted ciphers.
-    public static void addEncryptedCiphers(byte[] cipherText) {
+    public static void addEncryptedCiphers(byte[] cipherText, String dataName) {
+        EventLog.getInstance().logEvent(new Event("Added an encrypted password of "
+                + dataName
+                + " to the Encryption List"));
         encryptedCiphers.add(cipherText);
     }
 
@@ -34,6 +37,10 @@ public class EncryptionList {
 //    Modifies: this.dataNames
 //    Effects: adds the given data name to the list of data names.
     public static void addDataName(String dataName) {
+        EventLog.getInstance().logEvent(new Event("Added a data name: " + dataName
+                + " to the Encryption List"));
+        EventLog.getInstance().logEvent(new Event("Added a data name: " + dataName
+                + " to the Decryption List"));
         dataNames.add(dataName);
     }
 
@@ -44,6 +51,8 @@ public class EncryptionList {
         for (byte[] encryptedCipher : encryptedCiphers) {
             encryptedStrings.add(new String(encryptedCipher, StandardCharsets.UTF_8));
         }
+        EventLog.getInstance().logEvent(new Event("Asked for the passwords in the Encryption List "
+                + "with their respective data names"));
         return encryptedStrings;
     }
 

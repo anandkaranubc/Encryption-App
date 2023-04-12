@@ -29,6 +29,7 @@ public class Decryption {
 //    Requires: the cipherText and pair parameters must not be null.
 //    Effects: returns the decrypted password as a string.
     public static String passDecryption(byte[] cipherText, KeyPair pair) throws Exception {
+        EventLog.getInstance().logEvent(new Event("Decryption initiated"));
         //Initializing the same cipher for decryption
         Cipher cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
         cipher.init(Cipher.DECRYPT_MODE, pair.getPrivate());
