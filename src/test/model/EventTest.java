@@ -12,7 +12,8 @@ import static org.junit.jupiter.api.Assertions.*;
  * Unit tests for the Event class
  */
 public class EventTest {
-    private Event e, c1, c2, c3, c4;
+    private Event e, c1, c2, c3, c4, c5;
+    EventLog eventLog;
     private Date d;
 
     //NOTE: these tests might fail if time at which line (2) below is executed
@@ -23,6 +24,8 @@ public class EventTest {
     public void runBefore() {
         e = new Event("Sensor open at door");   // (1)
         c1 = new Event("1111");
+        c5 = null;
+        eventLog = EventLog.getInstance();
         c2 = new Event("1111");
         c3 = new Event("1234");
         c4 = new Event("twelve");
@@ -46,6 +49,8 @@ public class EventTest {
         assertTrue(c1.equals(c1));
         assertTrue(c1.equals(c2));
         assertFalse(c1.equals(c3));
+        assertFalse(c1.equals(c5));
+        assertFalse(c1.equals(eventLog));
     }
 
     @Test
